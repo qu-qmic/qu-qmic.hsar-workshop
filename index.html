@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Human State-Aware Robotics Workshop - ROMAN 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Source Sans Pro", sans-serif;
+            font-weight: 300;
+            line-height: 1.65;
+            color: #374151;
+            background-color: #ffffff;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #0d9488 0%, #14b8a6 50%, #2dd4bf 100%);
+            padding: 4rem 1rem;
+            text-align: center;
+            color: white;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: #fef3c7;
+            margin-bottom: 1rem;
+            letter-spacing: -0.025em;
+        }
+
+        @media (max-width: 640px) {
+            header h1 {
+                font-size: 2rem;
+            }
+        }
+
+        header h2 {
+            font-size: 2rem;
+            font-weight: 300;
+            color: #fcd34d;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.025em;
+        }
+
+        @media (max-width: 640px) {
+            header h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        header p {
+            font-size: 1.125rem;
+            font-weight: 300;
+            color: #fef3c7;
+        }
+
+        /* Navigation */
+        nav {
+            margin-top: 3rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #fef3c7;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 300;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #ffffff;
+        }
+
+        /* Main Content */
+        main {
+            background-color: #ffffff;
+        }
+
+        section {
+            padding: 4rem 1rem;
+        }
+
+        .container {
+            max-width: 56rem;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 2rem;
+            font-weight: 300;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.025em;
+        }
+
+        .section-divider {
+            height: 4px;
+            width: 4rem;
+            background-color: #0d9488;
+            margin-bottom: 2rem;
+        }
+
+        section p {
+            margin-bottom: 1.5rem;
+            color: #374151;
+            line-height: 1.8;
+        }
+
+        section.bg-light {
+            background-color: #f9fafb;
+        }
+
+        /* Topics Grid */
+        .topics-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .topics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .topics-grid ul {
+            list-style: none;
+        }
+
+        .topics-grid li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            color: #374151;
+        }
+
+        .topics-grid li span:first-child {
+            color: #0d9488;
+            margin-right: 0.75rem;
+            margin-top: 0.25rem;
+            flex-shrink: 0;
+        }
+
+        /* Program Section */
+        .program-item {
+            margin-bottom: 2rem;
+        }
+
+        .program-item h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .program-item p {
+            margin-bottom: 0;
+        }
+
+        /* Organizers */
+        .organizers-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .organizers-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .organizers-grid h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        .organizers-grid ul {
+            list-style: none;
+        }
+
+        .organizers-grid li {
+            color: #374151;
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+        }
+
+        .program-committee {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .program-committee h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        .committee-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .committee-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .committee-grid li {
+            color: #374151;
+            font-weight: 300;
+        }
+
+        /* Zoom Box */
+        .zoom-box {
+            background-color: #ffffff;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            border: 1px solid #e5e7eb;
+            margin-bottom: 1.5rem;
+        }
+
+        .zoom-box p {
+            margin-bottom: 1rem;
+            color: #374151;
+        }
+
+        .zoom-box strong {
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .zoom-box a {
+            color: #0d9488;
+            text-decoration: underline;
+        }
+
+        .zoom-box a:hover {
+            color: #0f766e;
+        }
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        button {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background-color: #0d9488;
+            color: white;
+            border: none;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            font-family: "Source Sans Pro", sans-serif;
+            font-size: 0.95rem;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0f766e;
+        }
+
+        .zoom-note {
+            color: #6b7280;
+            font-size: 0.875rem;
+            font-style: italic;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            text-align: center;
+        }
+
+        .contact-section a {
+            color: #0d9488;
+            text-decoration: underline;
+            font-weight: 600;
+        }
+
+        .contact-section a:hover {
+            color: #0f766e;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #0f766e 0%, #0d9488 100%);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        footer p {
+            color: #fef3c7;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+        }
+
+        footer p:last-child {
+            font-size: 0.875rem;
+            margin-bottom: 0;
+        }
+
+        /* Utility Classes */
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-8 {
+            margin-top: 2rem;
+        }
+
+        .mb-4 {
+            margin-bottom: 1rem;
+        }
+
+        .copy-feedback {
+            display: inline-block;
+            margin-left: 0.5rem;
+            color: #10b981;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        .copy-feedback.show {
+            opacity: 1;
+        }
+
+        .copy-feedback {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header>
+        <h1>ROMAN 2026 Workshop</h1>
+        <h2>Human State-Aware Robotics</h2>
+        <p>From Multimodal Data to Human-Adaptive Behavior in HRI</p>
+
+        <!-- Navigation -->
+        <nav>
+            <a href="#about">About the workshop</a>
+            <a href="#topics">Topics of Interest</a>
+            <a href="#program">Program</a>
+            <a href="#organizers">Organizers</a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- About the Workshop -->
+        <section id="about">
+            <div class="container">
+                <h2>About the Workshop</h2>
+                <div class="section-divider"></div>
+
+                <p>
+                    Recent advances in wearable sensors, multimodal foundation models, and real-time inference enable robots to estimate human internal states more reliably than before. However, the community lacks shared best practices for turning these signals into safe, trustworthy adaptive behavior in real-world interaction.
+                </p>
+
+                <p>
+                    This workshop explores how multimodal data can be transformed into real-time adaptive robot behavior for next-generation HRI. We focus on the end-to-end pipeline—from robust data curation and multimodal modeling to interaction policies that adapt to human internal states (e.g., mind wandering, anxiety, engagement, and trust).
+                </p>
+
+                <p>
+                    The workshop brings together researchers from HRI, social/affective computing, robotics, and AI to discuss sensing, fusion, and human-in-the-loop adaptation. We also emphasize trustworthy and responsible robotics, addressing risks such as over-reliance, loss of human agency, and ethical use of sensitive biosignals in domains including social interaction, teleoperation, inspection, and search-and-rescue.
+                </p>
+
+                <p>
+                    This workshop will consist of invited talks, a poster session with lightning talk videos, and a panel discussion, providing a comprehensive and interactive forum to explore how multimodal data and human internal state understanding can enable adaptive behavior in next-generation HRI.
+                </p>
+            </div>
+        </section>
+
+        <!-- Topics of Interest -->
+        <section id="topics" class="bg-light">
+            <div class="container">
+                <h2>Topics of Interest</h2>
+                <div class="section-divider"></div>
+
+                <div class="topics-grid">
+                    <div>
+                        <ul>
+                            <li>
+                                <span>•</span>
+                                <span>Multimodal sensing for HRI (gaze, speech, motion, physiology)</span>
+                            </li>
+                            <li>
+                                <span>•</span>
+                                <span>Human internal state estimation (engagement, stress, fatigue, mind wandering)</span>
+                            </li>
+                            <li>
+                                <span>•</span>
+                                <span>Multimodal data alignment, missing data, dataset bias, robustness</span>
+                            </li>
+                            <li>
+                                <span>•</span>
+                                <span>Learning adaptive interaction policies (supervised, RL, imitation, LLM-based)</span>
+                            </li>
+                            <li>
+                                <span>•</span>
+                                <span>Online adaptation and human-in-the-loop learning</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul>
+                            <li>
+                                <span>•</span>
+                                <span>Trustworthy robotics: calibration, over-reliance, transparency, agency</span>
+                            </li>
+                            <li>
+                                <span>•</span>
+                                <span>Ethics of biosignals in the wild (privacy, consent, data governance)</span>
+                            </li>
+                            <li>
+                                <span>•</span>
+                                <span>Applications: social robots, teleoperation, assistive robots, safety-critical HRI</span>
+                            </li>
+                            <li>
+                                <span>•</span>
+                                <span>Responsible dataset sharing: de-identification, access control, and reproducibility best practices</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Program -->
+        <section id="program">
+            <div class="container">
+                <h2>Program</h2>
+                <div class="section-divider"></div>
+
+                <div class="mb-4">
+                    <h3 style="font-size: 1.25rem; font-weight: 300; color: #1f2937; margin-bottom: 1rem;">Workshop Format</h3>
+                    <p>
+                        The workshop includes invited talks from six expert researchers, a poster session with lightning talk videos, breakout group discussions, and a panel discussion. This combined format aims to enhance accessibility, visibility, and engagement both during and beyond the workshop.
+                    </p>
+
+                    <div class="program-item">
+                        <h4>Invited Talks</h4>
+                        <p>
+                            Expert researchers from HRI, robotics, machine learning, cognitive science, and affective computing will provide complementary perspectives on utilizing multimodal data for embodied robots in real-world environments.
+                        </p>
+                    </div>
+
+                    <div class="program-item">
+                        <h4>Poster + Lightning Talk Videos</h4>
+                        <p>
+                            Poster presenters will prepare 1-minute lightning talk videos introducing their research, which will be advertised on social media, played during coffee breaks, and published on the workshop website.
+                        </p>
+                    </div>
+
+                    <div class="program-item">
+                        <h4>Breakout Groups</h4>
+                        <p>
+                            Small groups (4–6 people) will discuss guiding questions related to multimodal data challenges, human internal state modeling, and real-time adaptive robot behavior, then report key insights to the full audience.
+                        </p>
+                    </div>
+
+                    <div class="program-item">
+                        <h4>Panel Discussion</h4>
+                        <p>
+                            Established experts and early-career researchers will share perspectives on integrating multimodal sensing and human internal state estimation into adaptive robot behavior.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mt-8">
+                    <h3 style="font-size: 1.25rem; font-weight: 300; color: #1f2937; margin-bottom: 1rem;">Expected Outcomes</h3>
+                    <p>
+                        This workshop will synthesize shared best practices for transforming multimodal human data into real-time adaptive robot behavior, spanning data curation, human internal state modeling, and closed-loop interaction design. Through invited talks, posters, and discussion, we will identify key challenges and open research questions related to robustness in real-world settings, trustworthy adaptation, and the ethical use of sensitive biosignals, while fostering new cross-disciplinary collaborations. We will publish a post-workshop summary on the workshop website and encourage follow-up submissions to relevant venues.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Intended Audience -->
+        <section class="bg-light">
+            <div class="container">
+                <h2>Intended Audience</h2>
+                <div class="section-divider"></div>
+
+                <p>
+                    This workshop targets an interdisciplinary audience of researchers and practitioners in Human–Robot Interaction (HRI), robotics, artificial intelligence, and related fields who are interested in transforming multimodal human data into adaptive robot behavior. It is particularly relevant for those working on human state understanding, multimodal sensing and fusion, learning and modeling for interaction, and real-time behavioral adaptation. The workshop will also attract researchers concerned with trustworthy and responsible robotics, including issues of human agency, over-reliance, and ethical use of sensitive data, as well as those developing or deploying adaptive robotic systems in domains such as social interaction, teleoperation, and safety-critical applications. By bringing together participants from diverse backgrounds and career stages, the workshop aims to foster cross-disciplinary discussion and shared perspectives on building robust, human-centered adaptive robots.
+                </p>
+            </div>
+        </section>
+
+        <!-- Organizers -->
+        <section id="organizers">
+            <div class="container">
+                <h2>Organizers</h2>
+                <div class="section-divider"></div>
+
+                <div class="organizers-grid">
+                    <div>
+                        <h3>Workshop Chairs</h3>
+                        <ul>
+                            <li>Xiaoxuan Hei</li>
+                            <li>Karatas Nihan</li>
+                            <li>Neziha Akalin</li>
+                            <li>Mohammed Al Sada</li>
+                            <li>Faisal Al Jaber</li>
+                            <li>Tamon Miyake</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3>Invited Speakers</h3>
+                        <ul>
+                            <li>David Sirkin (Stanford)</li>
+                            <li>Tetsuya Ogata</li>
+                            <li>Adriana Tapus (ENSTA Paris)</li>
+                            <li>Kristiina Jokinen</li>
+                            <li>Yushi Wang (Waseda University)</li>
+                            <li>Gentiane Venture (University of Tokyo)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="program-committee">
+                    <h3>Program Committee</h3>
+                    <ul class="committee-grid">
+                        <li>Nathan Dennler (MIT)</li>
+                        <li>Okada Sensei (JAIST)</li>
+                        <li>Peng Wang (Manchester Metropolitan University)</li>
+                        <li>Chris Wei Zhou (Cardiff University)</li>
+                        <li>Baoru Huang (University of Liverpool)</li>
+                        <li>Shutong Jin (KTH)</li>
+                        <li>Chengzhou Tang (University of Manitoba)</li>
+                        <li>Jing Zhang (Wuhan University)</li>
+                        <li>Chenguang Yang (University of Liverpool)</li>
+                        <li>Angelo Cangelosi (University of Manchester)</li>
+                        <li>Zhihao Guo (Manchester Metropolitan University)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Remote Attendance -->
+        <section class="bg-light">
+            <div class="container">
+                <h2>Remote Attendance</h2>
+                <div class="section-divider"></div>
+
+                <p>Remote attendees can join the workshop via Zoom:</p>
+
+                <div class="zoom-box">
+                    <p>
+                        <strong>Meeting link:</strong>
+                        <a href="https://kth-se.zoom.us/j/61687860905" target="_blank">https://kth-se.zoom.us/j/61687860905</a>
+                    </p>
+                    <p>
+                        <strong>Meeting ID:</strong> 616 878 60905 &nbsp;&nbsp;
+                        <strong>Passcode:</strong> Not Needed
+                    </p>
+
+                    <div class="button-group">
+                        <button onclick="copyToClipboard('https://kth-se.zoom.us/j/61687860905', 'zoomBtn')">
+                            <span>📋</span>
+                            <span>Copy Zoom Link</span>
+                            <span class="copy-feedback" id="zoomBtn"></span>
+                        </button>
+                        <button onclick="copyToClipboard('616 878 60905', 'idBtn')">
+                            <span>📋</span>
+                            <span>Copy ID & Passcode</span>
+                            <span class="copy-feedback" id="idBtn"></span>
+                        </button>
+                    </div>
+                </div>
+
+                <p class="zoom-note">
+                    Note: The Zoom link will be active at the workshop start time.
+                </p>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section class="contact-section">
+            <div class="container">
+                <h2>Contact</h2>
+                <div class="section-divider" style="margin-left: auto; margin-right: auto;"></div>
+
+                <p style="font-size: 1.125rem;">
+                    For more information, please contact us at:
+                    <a href="mailto:workshop@example.com">workshop@example.com</a>
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>Human State-Aware Robotics Workshop • ROMAN 2026</p>
+        <p>© 2026 All rights reserved</p>
+    </footer>
+
+    <script>
+        function copyToClipboard(text, feedbackId) {
+            navigator.clipboard.writeText(text).then(() => {
+                const feedback = document.getElementById(feedbackId);
+                feedback.textContent = '✓ Copied!';
+                feedback.classList.add('show');
+                
+                setTimeout(() => {
+                    feedback.classList.remove('show');
+                    feedback.textContent = '';
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+            });
+        }
+    </script>
+</body>
+</html>
