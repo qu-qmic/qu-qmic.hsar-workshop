@@ -791,7 +791,7 @@
       .nav-list, .nav-actions .btn-outline{display:none}
       .hamburger{display:flex}
       .person{grid-column: span 6}
-      .program-table{display:none}
+      .program-table{width:100%;}
       .timeline{display:grid; gap:10px}
     }
     @media (max-width: 520px){
@@ -1028,6 +1028,24 @@
   .email-watermark{ font-size: 28px; }
 }
 
+
+/* --- Mobile fixes (program table + speaker placeholder) --- */
+.program-card{overflow-x:auto;}
+.table-scroll{overflow-x:auto; -webkit-overflow-scrolling: touch;}
+.table-scroll .program-table{min-width: 520px;}
+@media (max-width: 560px){
+  .table-scroll .program-table{min-width: 460px;}
+  .program-table th, .program-table td{padding: 12px 14px;}
+}
+/* Speaker photo placeholder should always fill card width */
+.speaker-photo{
+  width: 100%;
+  height: 260px;
+  aspect-ratio: auto;
+}
+@media (max-width: 560px){
+  .speaker-photo{height: 220px;}
+}
 </style>
 </head>
 
@@ -1343,17 +1361,16 @@
 
     <!-- Program -->
     <section id="program">
-      <div class="container">
         <div class="section-head">
-          <div>
-            <h2>Workshop Program</h2>
-            <p class="section-subtitle">Program schedule (draft; subject to update).</p>
-          </div>
+          <h2>Workshop Program</h2>
+          <p class="subtle">Program schedule (draft; subject to update).</p>
         </div>
+
         <div class="program-wrap">
-        <div class="card program-card">
-          <div class="card-body">
-<table class="program-table" aria-label="Program B table">
+          <div class="card program-card">
+            <div class="card-body">
+              <div class="table-scroll" aria-label="Scrollable program table wrapper">
+                <table class="program-table" aria-label="Program B table">
             <thead><tr><th>Time</th><th>Activity</th></tr></thead>
             <tbody>
               <tr><td>8:45</td><td>Welcome and Introduction</td></tr>
@@ -1369,9 +1386,11 @@
               <tr><td>12:10</td><td>Closing</td></tr>
             </tbody>
           </table>
+              </div>
+            </div>
           </div>
-      </div>
-    </section>
+        </div>
+      </section>
 
 
     <!-- Organizers -->
