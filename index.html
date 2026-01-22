@@ -1046,6 +1046,45 @@
 @media (max-width: 560px){
   .speaker-photo{height: 220px;}
 }
+
+/* === V21 FIX: Speakers/Organizers grid + photo fill === */
+.speaker-grid, .speakers-grid{
+  display:grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 16px;
+}
+.speaker-card{
+  grid-column: span 4; /* 3 cards per row on desktop */
+}
+@media (max-width: 980px){
+  .speaker-card{ grid-column: span 6; } /* 2 per row */
+}
+@media (max-width: 520px){
+  .speaker-card{ grid-column: span 12; } /* 1 per row */
+}
+/* Photo area: supports both <img> and background-image usage */
+.speaker-photo{
+  position: relative;
+  overflow: hidden;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  background-size: cover;
+  background-position: center;
+}
+.speaker-photo img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+/* Keep placeholder text centered if no image */
+.speaker-photo:has(img){
+  color: transparent; /* hides any leftover placeholder text nodes */
+}
+@supports not selector(:has(*)){
+  /* If :has() not supported, leave placeholder text as-is */
+}
+
 </style>
 </head>
 
