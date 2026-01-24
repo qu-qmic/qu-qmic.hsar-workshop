@@ -1179,7 +1179,7 @@
     </div>
 
     <div class="countdown-wrap">
-      <div id="hero-countdown" class="countdown" data-offset-days="211" data-offset-hours="17" data-offset-minutes="49" data-offset-seconds="0">
+      <div id="hero-countdown" class="countdown" data-target="2026-08-24T00:00:00+03:00">
         <div class="time-box"><div class="num" data-days>—</div><div class="label">DAYS</div></div>
         <div class="time-box"><div class="num" data-hours>—</div><div class="label">HOURS</div></div>
         <div class="time-box"><div class="num" data-minutes>—</div><div class="label">MINUTES</div></div>
@@ -1728,63 +1728,78 @@
   </script>
 <script>
   (function () {
-    // Countdown (defaults to: now + 14 days, 4 hours, 30 minutes)
-    const el =
-      document.getElementById("hero-countdown") ||
-      document.querySelector(".countdown");
-
+    // Countdown (supports fixed deadline via data-target, or persistent offsets via localStorage)
+    const el = document.getElementById("hero-countdown");
     if (!el) return;
 
-    const daysEl = el.querySelector("[data-days]");
-    const hoursEl = el.querySelector("[data-hours]");
-    const minsEl = el.querySelector("[data-minutes]");
-    const secsEl = el.querySelector("[data-seconds]");
+    const digits = {
+        days: el.querySelector("[data-days]"),
+        hours: el.querySelector("[data-hours]"),
+        minutes: el.querySelector("[data-minutes]"),
+        seconds: el.querySelector("[data-seconds]")
+    };
 
-    // 1) If data-target exists, use it.
-    // 2) Otherwise, use offsets from data-offset-* (fallback to 14d 4h 30m).
-    function resolveTarget() {
-      const targetStr = el.getAttribute("data-target");
-      if (targetStr) {
-        const t = new Date(targetStr);
-        if (!isNaN(t.getTime())) return t;
-      }
+    const storageKey = el.id ? ("countdownTarget:" + el.id) : "countdownTarget";
 
-      const d = parseInt(el.getAttribute("data-offset-days") || "14", 10);
-      const h = parseInt(el.getAttribute("data-offset-hours") || "4", 10);
-      const m = parseInt(el.getAttribute("data-offset-minutes") || "30", 10);
-      const s = parseInt(el.getAttribute("data-offset-seconds") || "0", 10);
+    function getTargetMs() {
+        const targetAttr = el.getAttribute("data-target");
 
-      return new Date(Date.now() + (((((d * 24) + h) * 60 + m) * 60 + s) * 1000));
+        // Preferred: fixed deadline (ISO 8601 with timezone offset), e.g. 2026-08-24T00:00:00+03:00
+        if (targetAttr) {
+            const parsed = Date.parse(targetAttr);
+            if (Number.isFinite(parsed)) {
+                // If we switched to a fixed deadline, avoid using any previously stored offset target.
+                localStorage.removeItem(storageKey);
+                return parsed;
+            }
+        }
+
+        // Fallback: offsets (persisted so refresh does NOT reset)
+        const now = Date.now();
+        const stored = parseInt(localStorage.getItem(storageKey) || "", 10);
+        if (Number.isFinite(stored) && stored > now) return stored;
+
+        const d = parseInt(el.getAttribute("data-offset-days") || "14", 10);
+        const h = parseInt(el.getAttribute("data-offset-hours") || "0", 10);
+        const m = parseInt(el.getAttribute("data-offset-minutes") || "0", 10);
+        const s = parseInt(el.getAttribute("data-offset-seconds") || "0", 10);
+
+        const ms = (((((d * 24 + h) * 60 + m) * 60) + s) * 1000);
+        const target = now + ms;
+        localStorage.setItem(storageKey, String(target));
+        return target;
     }
 
-    const target = resolveTarget();
+    const targetMs = getTargetMs();
 
     function pad2(n) {
-      return String(n).padStart(2, "0");
+        return String(n).padStart(2, "0");
     }
 
     function tick() {
-      const now = new Date();
-      let diff = target - now;
+        const now = Date.now();
+        let diff = Math.max(0, targetMs - now);
 
-      if (diff < 0) diff = 0;
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        diff -= days * (1000 * 60 * 60 * 24);
 
-      const totalSeconds = Math.floor(diff / 1000);
-      const days = Math.floor(totalSeconds / 86400);
-      const hours = Math.floor((totalSeconds % 86400) / 3600);
-      const mins = Math.floor((totalSeconds % 3600) / 60);
-      const secs = totalSeconds % 60;
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        diff -= hours * (1000 * 60 * 60);
 
-      if (daysEl) daysEl.textContent = String(days);
-      if (hoursEl) hoursEl.textContent = pad2(hours);
-      if (minsEl) minsEl.textContent = pad2(mins);
-      if (secsEl) secsEl.textContent = pad2(secs);
+        const minutes = Math.floor(diff / (1000 * 60));
+        diff -= minutes * (1000 * 60);
+
+        const seconds = Math.floor(diff / 1000);
+
+        if (digits.days) digits.days.textContent = String(days);
+        if (digits.hours) digits.hours.textContent = pad2(hours);
+        if (digits.minutes) digits.minutes.textContent = pad2(minutes);
+        if (digits.seconds) digits.seconds.textContent = pad2(seconds);
     }
 
     tick();
     setInterval(tick, 1000);
-  })();
-</script>
+})();</script>
 
 </body>
 </html>
