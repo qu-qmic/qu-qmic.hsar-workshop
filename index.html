@@ -1,12 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="color-scheme" content="light" />
-  <title>Human State-Aware Robotics: From Multimodal Data to Human-Adaptive Behavior in HRI | HRI 2026</title>
-
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="light" name="color-scheme"/>
+<title>Human State-Aware Robotics: From Multimodal Data to Human-Adaptive Behavior in HRI | HRI 2026</title>
+<style>
     :root{
       --primary:#D42321;
       --secondary:#99BB1F;
@@ -394,6 +394,20 @@
       color: var(--muted);
       /*max-width: 72ch;*/
       font-size: 15px;
+    }
+
+    /* CFP subsection (Topics of Interest) */
+    .topics-subsection{ margin-top: 22px; }
+    .subsection-head{ margin: 16px 0 12px; }
+    .subsection-title{
+      font-size: clamp(18px, 2vw, 24px);
+      margin: 0;
+      letter-spacing: -.2px;
+    }
+    .subsection-subtitle{
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 14px;
     }
     .meta-line{
       display:flex; gap:8px; flex-wrap:wrap; align-items:center;
@@ -1085,544 +1099,550 @@
   /* If :has() not supported, leave placeholder text as-is */
 }
 
+
+/* Merged: Topics of Interest inside CFP */
+.topics-subsection{margin-top:42px;}
+@media (max-width: 768px){.topics-subsection{margin-top:28px;}}
+/* Topic-driven CFP flow */
+.topics-grid .topic-card{cursor:pointer; user-select:none; transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;}
+.topics-grid .topic-card:hover{transform:translateY(-2px);}
+.topics-grid .topic-card:focus{outline:none; box-shadow:0 0 0 4px color-mix(in srgb, var(--primary) 25%, transparent);}
+.topics-grid .topic-card.is-selected{border-color:color-mix(in srgb, var(--primary) 60%, #ffffff); box-shadow:0 16px 40px rgba(0,0,0,.10);}
+
+.topic-next{margin-top:16px;}
+.topic-next-inner{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:14px 16px; border-radius:18px; border:1px solid rgba(255,255,255,.16); background:rgba(0,0,0,.06); backdrop-filter:saturate(120%) blur(10px);}
+.topic-next-label{display:flex; align-items:center; gap:10px; font-weight:600;}
+
+.cfp-flow{align-items:stretch;}
+.cfp-result-card{display:flex; flex-direction:column; justify-content:space-between; min-height:100%;}
+.cfp-selected-pill{display:inline-flex; align-items:center; gap:10px; padding:8px 12px; border-radius:999px; background:color-mix(in srgb, var(--primary) 14%, transparent); border:1px solid color-mix(in srgb, var(--primary) 28%, transparent); font-weight:700; width:fit-content;}
+.cfp-topic-title{margin-top:10px; margin-bottom:6px;}
+.mini-note{font-size:.95rem;}
+
+@media (max-width: 768px){
+  .topic-next-inner{flex-direction:column; align-items:stretch;}
+  .topic-next-inner .btn{width:100%; justify-content:center;}
+}
+
+/* Topic CTA button inside each topic card */
+.topic-card{ position: relative; }
+.topic-cta{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 14px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  width: fit-content;
+}
+@media (max-width: 768px){
+  .topic-cta{ width: 100%; }
+}
+
+/* --- Topics -> CFP flow tweaks --- */
+html { scroll-behavior: smooth; }
+.section-topics .section-head h2 { font-size: 48px; letter-spacing: -0.02em; }
+.section-cfp .section-head h2 { font-size: 34px; letter-spacing: -0.01em; }
+.section-cfp { padding-top: 72px; }
+
+.topic-card { position: relative; }
+.topic-card h3 { padding-right: 148px; } /* leave room for the CTA on the right */
+.topic-cta {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  padding: 8px 12px;
+  font-size: 12px;
+  border-radius: 999px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .topic-card h3 { padding-right: 0; }
+  .topic-cta {
+    position: static;
+    margin-top: 10px;
+    display: inline-flex;
+  }
+}
+
 </style>
 </head>
-
 <body>
-  <a class="skip-link" href="#main">Skip to main content</a>
-
-  <!-- Sticky header -->
-  <header class="site-header" role="banner">
-    <div class="container">
-      <div class="nav-wrap">
-        <a class="brand" href="#top">
-          <div class="brand-badge" aria-hidden="true"></div>
-          <div class="brand-text">
-            <strong>ROMAN 2026 Workshop</strong>
-            <span>Human State-Aware Robotics</span>
-          </div>
-        </a>
-
-        <nav class="primary-nav" aria-label="Primary">
-          <ul class="nav-list" id="navList">
-            <li><a class="nav-link" href="#about">About</a></li>
-            <li><a class="nav-link" href="#cfp">Call for Participation</a></li>
-            <li><a class="nav-link" href="#topics">Topics</a></li>
-            <li><a class="nav-link" href="#speakers">Speakers</a></li>
-            <li><a class="nav-link" href="#program">Program</a></li>
-            <li><a class="nav-link" href="#organizers">Organizers</a></li>
-            <li><a class="nav-link" href="#audience">Audience</a></li><li>
+<a class="skip-link" href="#main">Skip to main content</a>
+<!-- Sticky header -->
+<header class="site-header" role="banner">
+<div class="container">
+<div class="nav-wrap">
+<a class="brand" href="#top">
+<div aria-hidden="true" class="brand-badge"></div>
+<div class="brand-text">
+<strong>ROMAN 2026 Workshop</strong>
+<span>Human State-Aware Robotics</span>
+</div>
+</a>
+<nav aria-label="Primary" class="primary-nav">
+<ul class="nav-list" id="navList">
+<li><a class="nav-link" href="#about">About</a></li>
+<li><a class="nav-link" href="#cfp">Call for Participation</a></li>
+<li><a class="nav-link" href="#topics">Topics</a></li>
+<li><a class="nav-link" href="#speakers">Speakers</a></li>
+<li><a class="nav-link" href="#program">Program</a></li>
+<li><a class="nav-link" href="#organizers">Organizers</a></li>
+<li><a class="nav-link" href="#audience">Audience</a></li><li>
 <a class="nav-link" href="#contact">Contact</a></li>
-          </ul>
-        </nav>
-
-        <div class="nav-actions">
-          <button class="hamburger" id="openDrawer" aria-label="Open menu" aria-controls="drawer" aria-expanded="false">
-            <span aria-hidden="true"></span>
-          </button>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- Mobile drawer -->
-  <div class="drawer-overlay" id="drawerOverlay" aria-hidden="true"></div>
-  <aside class="drawer" id="drawer" aria-label="Mobile navigation">
-    <div class="drawer-header">
-      <strong>Navigate</strong>
-      <button class="drawer-close" id="closeDrawer" aria-label="Close menu"></button>
-    </div>
-    <div class="drawer-body">
-      <div class="pill" style="margin:6px 4px 10px;">
-        <span class="pill-dot" aria-hidden="true"></span>
-        <span>Primary: #D42321 · Secondary: #99BB1F</span>
-      </div>
-      <ul class="drawer-nav" id="drawerNav">
-        <li><a href="#about">About</a></li>
-        <li><a href="#cfp">Call for Participation</a></li>
-        <li><a href="#topics">Topics</a></li>
-        <li><a href="#speakers">Speakers</a></li>
-        <li><a href="#program">Program</a></li>
-        <li><a href="#organizers">Organizers</a></li>
-        <li><a href="#audience">Audience</a></li><li><a href="#contact">Contact</a></li>
-      </ul>
-      <div class="drawer-actions">
-        <a class="btn btn-primary" href="#cfp">Submit / Register</a>
-        <a class="btn btn-ghost" href="#contact">Ask a Question</a>
-      </div>
-      <p class="note" style="padding: 8px 4px 0;">
+</ul>
+</nav>
+<div class="nav-actions">
+<button aria-controls="drawer" aria-expanded="false" aria-label="Open menu" class="hamburger" id="openDrawer">
+<span aria-hidden="true"></span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<!-- Mobile drawer -->
+<div aria-hidden="true" class="drawer-overlay" id="drawerOverlay"></div>
+<aside aria-label="Mobile navigation" class="drawer" id="drawer">
+<div class="drawer-header">
+<strong>Navigate</strong>
+<button aria-label="Close menu" class="drawer-close" id="closeDrawer"></button>
+</div>
+<div class="drawer-body">
+<div class="pill" style="margin:6px 4px 10px;">
+<span aria-hidden="true" class="pill-dot"></span>
+<span>Primary: #D42321 · Secondary: #99BB1F</span>
+</div>
+<ul class="drawer-nav" id="drawerNav">
+<li><a href="#about">About</a></li>
+<li><a href="#cfp">Call for Participation</a></li>
+<li><a href="#topics">Topics</a></li>
+<li><a href="#speakers">Speakers</a></li>
+<li><a href="#program">Program</a></li>
+<li><a href="#organizers">Organizers</a></li>
+<li><a href="#audience">Audience</a></li><li><a href="#contact">Contact</a></li>
+</ul>
+<div class="drawer-actions">
+<a class="btn btn-primary" href="#cfp">Submit / Register</a>
+<a class="btn btn-ghost" href="#contact">Ask a Question</a>
+</div>
+<p class="note" style="padding: 8px 4px 0;">
         Tip: Replace placeholders (dates, venue, links, speaker affiliations, images) when final details are available.
       </p>
-    </div>
-  </aside>
-
-  <!-- Hero -->
-  <div id="top"></div>
-  <section class="hero" id="home">
-  <div class="hero-bg" aria-hidden="true"></div>
-  <div class="hero-inner">
-    <div class="hero-kicker">
-      <span class="hero-pill">ROMAN 2026 Workshop</span>
-      <span class="hero-tagline">Human State‑Aware Robotics</span>
-    </div>
-
-    <h1>Human State‑Aware Robotics:<br/>From Multimodal Data to Human‑Adaptive Behavior in HRI</h1>
-
-    <p>
+</div>
+</aside>
+<!-- Hero -->
+<div id="top"></div>
+<section class="hero" id="home">
+<div aria-hidden="true" class="hero-bg"></div>
+<div class="hero-inner">
+<div class="hero-kicker">
+ <a class="hero-pill" href="https://ro-man2026.org/" target="_blank" rel="noopener noreferrer">ROMAN 2026 Workshop</a>
+<span class="hero-tagline">Human State‑Aware Robotics</span>
+</div>
+<h1>Human State‑Aware Robotics:<br/>From Multimodal Data to Human‑Adaptive Behavior in HRI</h1>
+<p>
       Bringing together researchers and practitioners to advance robust,
       responsible, and deployable human state‑aware robotic systems.
     </p>
+<div class="hero-cta">
+<a class="btn btn-primary has-dot" href="#cfp"><span aria-hidden="true" class="dot"></span>Call for Participation</a>
+<a class="btn btn-outline-white has-dot" href="#topics"><span aria-hidden="true" class="dot"></span>Explore Topics</a>
+</div>
+<div class="countdown-wrap">
+<div class="countdown" data-target="2026-08-24T00:00:00+03:00" id="hero-countdown">
+<div class="time-box"><div class="num" data-days="">—</div><div class="label">DAYS</div></div>
+<div class="time-box"><div class="num" data-hours="">—</div><div class="label">HOURS</div></div>
+<div class="time-box"><div class="num" data-minutes="">—</div><div class="label">MINUTES</div></div>
+<div class="time-box"><div class="num" data-seconds="">—</div><div class="label">SECONDS</div></div>
+</div>
+<div class="countdown-note">Until <strong>24 Mon - 28 Fri</strong> August 2026</div>
+</div>
+</div>
 
-    <div class="hero-cta">
-      <a class="btn btn-primary has-dot" href="#cfp"><span class="dot" aria-hidden="true"></span>Call for Participation</a>
-      <a class="btn btn-outline-white has-dot" href="#topics"><span class="dot" aria-hidden="true"></span>Explore Topics</a>
+
+</section>
+<main class="container" id="main">
+<!-- About -->
+<section aria-label="About the workshop" id="about">
+<div class="section-head">
+<div>
+<h2>About the Workshop</h2>
+<p class="section-subtitle">
+            Advancing human-centered adaptive robotics through multimodal data understanding.
+          </p>
+</div>
+<div aria-label="Quick metadata" class="meta-line">
+<span class="badge"><span aria-hidden="true" class="mini-dot"></span>End-to-end pipeline</span>
+<span aria-hidden="true" class="dot"></span>
+<span>Data → Modeling → Real-time Adaptation</span>
+</div>
+</div>
+<div class="callout">
+<p><strong>Why now?</strong> Wearable sensors, multimodal foundation models, and real-time inference have matured—yet the community still lacks shared best practices for turning signals into safe, trustworthy adaptive behavior in real-world interaction.</p>
+</div>
+<div class="grid" style="margin-top:14px;">
+<div class="card col-7">
+<h3>Objective</h3>
+<p>
+            Explore how multimodal data can be systematically transformed into adaptive robot behaviors for next-generation Human–Robot Interaction (HRI). We focus on the end-to-end pipeline from <b>clean and generalizable data curation</b>, through <b>learning and modeling</b>, to <b>real-time adaptive behavior</b>—with emphasis on human internal states such as mind wandering, anxiety, engagement, and trust.
+          </p>
+</div>
+<div class="card soft col-5">
+<h3>Expected Outcomes</h3>
+<p>
+            Synthesize best practices, identify open research questions, and foster cross-disciplinary collaborations. A post-workshop summary will be published, and follow-up submissions encouraged to relevant venues.
+          </p>
+<p class="note">Replace with specific publication venue(s) once confirmed.</p>
+</div>
+</div>
+</section>
+<!-- CFP -->
+
+<section class="section section-topics" id="topics">
+  <div class="container">
+    <div class="section-head">
+      <h2>Topics of Interest</h2>
+      <p class="muted">Browse the topics below. If your work matches one or more areas, see the Call for Participation details below.</p>
     </div>
 
-    <div class="countdown-wrap">
-      <div id="hero-countdown" class="countdown" data-target="2026-08-24T00:00:00+03:00">
-        <div class="time-box"><div class="num" data-days>—</div><div class="label">DAYS</div></div>
-        <div class="time-box"><div class="num" data-hours>—</div><div class="label">HOURS</div></div>
-        <div class="time-box"><div class="num" data-minutes>—</div><div class="label">MINUTES</div></div>
-        <div class="time-box"><div class="num" data-seconds>—</div><div class="label">SECONDS</div></div>
-      </div>
-      <div class="countdown-note">Until <strong>24 Mon - 28 Fri</strong> August 2026</div>
-    </div>
+    <div aria-label="Topics of Interest" class="grid topics-grid" id="topics-grid">
+<div class="card col-4 topic-card" role="button" tabindex="0">
+<div aria-hidden="true" class="icon-chip">
+<svg viewbox="0 0 24 24"><path d="M12 2a4 4 0 0 0-4 4v2H6a2 2 0 0 0-2 2v6a6 6 0 1 0 12 0v-2h2a2 2 0 0 0 2-2V8a6 6 0 0 0-10-6Zm-2 6V6a2 2 0 0 1 4 0v2h-4Z"></path></svg>
+</div>
+<h3>Multimodal Sensing</h3>
+<p>Gaze, speech, motion, physiological signals for HRI.</p>
+<a class="btn btn-outline topic-cta" href="#cfp">Call for Participation</a></div>
+<div class="card col-4 topic-card" role="button" tabindex="0">
+<div aria-hidden="true" class="icon-chip">
+<svg viewbox="0 0 24 24"><path d="M12 2 1 7l11 5 9-4.09V17h2V7L12 2Zm0 12L1 9v11l11 5 11-5V9l-11 5Z"></path></svg>
+</div>
+<h3>Human State Estimation</h3>
+<p>Engagement, stress, fatigue, mind wandering detection.</p>
+<a class="btn btn-outline topic-cta" href="#cfp">Call for Participation</a></div>
+<div class="card col-4 topic-card" role="button" tabindex="0">
+<div aria-hidden="true" class="icon-chip">
+<svg viewbox="0 0 24 24"><path d="M21 7h-6V3h6v4Zm-2-2h-2v0h2V5ZM21 21h-6v-4h6v4Zm-2-2h-2v0h2v0ZM9 7H3V3h6v4ZM7 5H5v0h2V5Zm2 16H3v-4h6v4Zm-2-2H5v0h2v0Zm4-14h2v14h-2V5Z"></path></svg>
+</div>
+<h3>Data Challenges</h3>
+<p>Alignment, missing data, dataset bias, robustness.</p>
+<a class="btn btn-outline topic-cta" href="#cfp">Call for Participation</a></div>
+<div class="card col-4 topic-card" role="button" tabindex="0">
+<div aria-hidden="true" class="icon-chip">
+<svg viewbox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7v2a3 3 0 0 0 3 3h1v3a3 3 0 0 0 6 0v-3h1a3 3 0 0 0 3-3V9a7 7 0 0 0-7-7Zm-1 18a1 1 0 0 1-2 0v-5h2v5Zm6 0a1 1 0 0 1-2 0v-5h2v5Zm2-9a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V9a5 5 0 0 1 10 0v2Z"></path></svg>
+</div>
+<h3>Adaptive Learning</h3>
+<p>Supervised, RL, imitation, LLM-based interaction policies.</p>
+<a class="btn btn-outline topic-cta" href="#cfp">Call for Participation</a></div>
+<div class="card col-4 topic-card" role="button" tabindex="0">
+<div aria-hidden="true" class="icon-chip">
+<svg viewbox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10.01 10.01 0 0 0 12 2Zm1 17.93V19h-2v.93A8.01 8.01 0 0 1 4.07 13H5v-2H4.07A8.01 8.01 0 0 1 11 4.07V5h2V4.07A8.01 8.01 0 0 1 19.93 11H19v2h.93A8.01 8.01 0 0 1 13 19.93Z"></path></svg>
+</div>
+<h3>Online Adaptation</h3>
+<p>Real-time learning and human-in-the-loop systems.</p>
+<a class="btn btn-outline topic-cta" href="#cfp">Call for Participation</a></div>
+<div class="card col-4 topic-card" role="button" tabindex="0">
+<div aria-hidden="true" class="icon-chip">
+<svg viewbox="0 0 24 24"><path d="M12 1 3 5v6c0 5 3.8 9.7 9 11 5.2-1.3 9-6 9-11V5l-9-4Zm0 2.2L19 6v5c0 3.9-2.8 7.8-7 9-4.2-1.2-7-5.1-7-9V6l7-2.8Z"></path></svg>
+</div>
+<h3>Trustworthy Robotics</h3>
+<p>Calibration, over-reliance, transparency, human agency.</p>
+<a class="btn btn-outline topic-cta" href="#cfp">Call for Participation</a></div>
+<div class="card col-4 topic-card" role="button" tabindex="0">
+<div aria-hidden="true" class="icon-chip">
+<svg viewbox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7v4a3 3 0 0 0 3 3h1v-2H8a1 1 0 0 1-1-1V9a5 5 0 0 1 10 0v5a1 1 0 0 1-1 1h-1v2h1a3 3 0 0 0 3-3V9a7 7 0 0 0-7-7Z"></path></svg>
+</div>
+<h3>Ethics &amp; Privacy</h3>
+<p>Biosignals in the wild: privacy, consent, data governance.</p>
+<a class="btn btn-outline topic-cta" href="#cfp">Call for Participation</a></div>
+<div class="card col-4 topic-card" role="button" tabindex="0">
+<div aria-hidden="true" class="icon-chip">
+<svg viewbox="0 0 24 24"><path d="M4 4h16v2H4V4Zm0 14h16v2H4v-2Zm0-7h16v2H4v-2Z"></path></svg>
+</div>
+<h3>Applications</h3>
+<p>Social robots, teleoperation, assistive robots, safety-critical HRI.</p>
+<a class="btn btn-outline topic-cta" href="#cfp">Call for Participation</a></div>
+<div class="card col-4 topic-card" role="button" tabindex="0">
+<div aria-hidden="true" class="icon-chip">
+<svg viewbox="0 0 24 24"><path d="M12 3 2 9l10 6 10-6-10-6Zm0 10L2 7v10l10 6 10-6V7l-10 6Z"></path></svg>
+</div>
+<h3>Responsible Sharing</h3>
+<p>De-identification, access control, reproducibility best practices.</p>
+<a class="btn btn-outline topic-cta" href="#cfp">Call for Participation</a></div>
+</div>
   </div>
 </section>
 
-  <main id="main" class="container">
-    <!-- About -->
-    <section id="about" aria-label="About the workshop">
-      <div class="section-head">
-        <div>
-          <h2>About the Workshop</h2>
-          <p class="section-subtitle">
-            Advancing human-centered adaptive robotics through multimodal data understanding.
-          </p>
-        </div>
-        <div class="meta-line" aria-label="Quick metadata">
-          <span class="badge"><span class="mini-dot" aria-hidden="true"></span>End-to-end pipeline</span>
-          <span class="dot" aria-hidden="true"></span>
-          <span>Data → Modeling → Real-time Adaptation</span>
-        </div>
-      </div>
+<section class="section section-cfp" id="cfp">
+<div class="container">
+<div class="section-head">
+<h2>Call for Participation</h2>
+<p class="muted">Start by selecting a topic of interest. We’ll then show the recommended next steps to submit to the workshop.</p>
+</div>
+<!-- Step 2: CFP becomes the next action -->
+<div class="subsection cfp-subsection" id="cfp-next">
+<div class="grid cfp-flow">
 
-      <div class="callout">
-        <p><strong>Why now?</strong> Wearable sensors, multimodal foundation models, and real-time inference have matured—yet the community still lacks shared best practices for turning signals into safe, trustworthy adaptive behavior in real-world interaction.</p>
-      </div>
-
-      <div class="grid" style="margin-top:14px;">
-        <div class="card col-7">
-          <h3>Objective</h3>
-          <p>
-            Explore how multimodal data can be systematically transformed into adaptive robot behaviors for next-generation Human–Robot Interaction (HRI). We focus on the end-to-end pipeline from <b>clean and generalizable data curation</b>, through <b>learning and modeling</b>, to <b>real-time adaptive behavior</b>—with emphasis on human internal states such as mind wandering, anxiety, engagement, and trust.
-          </p>
-        </div>
-        <div class="card soft col-5">
-          <h3>Expected Outcomes</h3>
-          <p>
-            Synthesize best practices, identify open research questions, and foster cross-disciplinary collaborations. A post-workshop summary will be published, and follow-up submissions encouraged to relevant venues.
-          </p>
-          <p class="note">Replace with specific publication venue(s) once confirmed.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- CFP -->
-    <section id="cfp" aria-label="Call for participation">
-      <div class="section-head">
-        <div>
-          <h2>Call for Participation</h2>
-          <p class="section-subtitle">
-            We welcome short papers, extended abstracts, and posters that advance human state-aware robotics for real-world HRI.
-          </p>
-        </div>
-      </div>
-
-      <div class="cfp">
-        <div class="card">
-          <h3>What to submit</h3>
-          <p>
+<div class="col-12" id="submission-details">
+<div class="card">
+<h3>What to submit</h3>
+<p>
             Submit work that connects multimodal human data to adaptive robot behavior—methods, datasets, studies, systems, or lessons learned. We particularly encourage contributions that address robustness, responsible data practices, and deployment in-the-wild.
           </p>
-          <ul class="list">
-            <li><b>Format:</b> SHORT PAPER / EXTENDED ABSTRACT (TBD)</li>
-            <li><b>Length:</b> X pages (TBD)</li>
-            <li><b>Submission link:</b> TBD</li>
-            <li><b>Presentation:</b> Poster + optional lightning video</li>
-          </ul>
-
-          <div class="callout" style="margin-top:14px;">
-            <p><strong>Poster visibility:</strong> Poster presenters prepare a 1-minute lightning talk video. Videos are promoted on social media, played during breaks, and linked on the workshop website.</p>
-          </div>
-        </div>
-
-        </div>
-    </section>
-
-    <!-- Topics -->
-    <section id="topics" aria-label="Topics of interest">
-      <div class="section-head">
-        <div>
-          <h2>Topics of Interest</h2>
-          <p class="section-subtitle">Contributions are welcome across the full spectrum of human state-aware robotics.</p>
-        </div>
-      </div>
-
-      <div class="grid">
-        <div class="card col-4">
-          <div class="icon-chip" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M12 2a4 4 0 0 0-4 4v2H6a2 2 0 0 0-2 2v6a6 6 0 1 0 12 0v-2h2a2 2 0 0 0 2-2V8a6 6 0 0 0-10-6Zm-2 6V6a2 2 0 0 1 4 0v2h-4Z"/></svg>
-          </div>
-          <h3>Multimodal Sensing</h3>
-          <p>Gaze, speech, motion, physiological signals for HRI.</p>
-        </div>
-
-        <div class="card col-4">
-          <div class="icon-chip" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M12 2 1 7l11 5 9-4.09V17h2V7L12 2Zm0 12L1 9v11l11 5 11-5V9l-11 5Z"/></svg>
-          </div>
-          <h3>Human State Estimation</h3>
-          <p>Engagement, stress, fatigue, mind wandering detection.</p>
-        </div>
-
-        <div class="card col-4">
-          <div class="icon-chip" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M21 7h-6V3h6v4Zm-2-2h-2v0h2V5ZM21 21h-6v-4h6v4Zm-2-2h-2v0h2v0ZM9 7H3V3h6v4ZM7 5H5v0h2V5Zm2 16H3v-4h6v4Zm-2-2H5v0h2v0Zm4-14h2v14h-2V5Z"/></svg>
-          </div>
-          <h3>Data Challenges</h3>
-          <p>Alignment, missing data, dataset bias, robustness.</p>
-        </div>
-
-        <div class="card col-4">
-          <div class="icon-chip" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7v2a3 3 0 0 0 3 3h1v3a3 3 0 0 0 6 0v-3h1a3 3 0 0 0 3-3V9a7 7 0 0 0-7-7Zm-1 18a1 1 0 0 1-2 0v-5h2v5Zm6 0a1 1 0 0 1-2 0v-5h2v5Zm2-9a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V9a5 5 0 0 1 10 0v2Z"/></svg>
-          </div>
-          <h3>Adaptive Learning</h3>
-          <p>Supervised, RL, imitation, LLM-based interaction policies.</p>
-        </div>
-
-        <div class="card col-4">
-          <div class="icon-chip" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10.01 10.01 0 0 0 12 2Zm1 17.93V19h-2v.93A8.01 8.01 0 0 1 4.07 13H5v-2H4.07A8.01 8.01 0 0 1 11 4.07V5h2V4.07A8.01 8.01 0 0 1 19.93 11H19v2h.93A8.01 8.01 0 0 1 13 19.93Z"/></svg>
-          </div>
-          <h3>Online Adaptation</h3>
-          <p>Real-time learning and human-in-the-loop systems.</p>
-        </div>
-
-        <div class="card col-4">
-          <div class="icon-chip" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M12 1 3 5v6c0 5 3.8 9.7 9 11 5.2-1.3 9-6 9-11V5l-9-4Zm0 2.2L19 6v5c0 3.9-2.8 7.8-7 9-4.2-1.2-7-5.1-7-9V6l7-2.8Z"/></svg>
-          </div>
-          <h3>Trustworthy Robotics</h3>
-          <p>Calibration, over-reliance, transparency, human agency.</p>
-        </div>
-
-        <div class="card col-4">
-          <div class="icon-chip" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7v4a3 3 0 0 0 3 3h1v-2H8a1 1 0 0 1-1-1V9a5 5 0 0 1 10 0v5a1 1 0 0 1-1 1h-1v2h1a3 3 0 0 0 3-3V9a7 7 0 0 0-7-7Z"/></svg>
-          </div>
-          <h3>Ethics & Privacy</h3>
-          <p>Biosignals in the wild: privacy, consent, data governance.</p>
-        </div>
-
-        <div class="card col-4">
-          <div class="icon-chip" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M4 4h16v2H4V4Zm0 14h16v2H4v-2Zm0-7h16v2H4v-2Z"/></svg>
-          </div>
-          <h3>Applications</h3>
-          <p>Social robots, teleoperation, assistive robots, safety-critical HRI.</p>
-        </div>
-
-        <div class="card col-4">
-          <div class="icon-chip" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M12 3 2 9l10 6 10-6-10-6Zm0 10L2 7v10l10 6 10-6V7l-10 6Z"/></svg>
-          </div>
-          <h3>Responsible Sharing</h3>
-          <p>De-identification, access control, reproducibility best practices.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Speakers -->
-    
-    <!-- Speakers -->
-    <section id="speakers" aria-label="Invited speakers">
-      <div class="section-head">
-        <div>
-          <h2>Invited Speakers</h2>
-          <p class="section-subtitle">Leading experts sharing complementary perspectives.</p>
-        </div>
-        <div class="meta-line">
-          <span class="badge"><span class="mini-dot" aria-hidden="true"></span>Photos are placeholders</span>
-        </div>
-      </div>
-
-      <div class="speaker-grid" aria-label="Speaker cards">
-        <article class="speaker-card">
-          <div class="speaker-photo" role="img" aria-label="Speaker photo placeholder">Photo placeholder</div>
-          <div class="speaker-meta">
-            <div class="speaker-name">Speaker 1</div>
-            <div class="speaker-affil">Stanford University</div>
-          </div>
-        </article>
-
-        <article class="speaker-card">
-          <div class="speaker-photo" role="img" aria-label="Speaker photo placeholder">Photo placeholder</div>
-          <div class="speaker-meta">
-            <div class="speaker-name">Speaker 2</div>
-            <div class="speaker-affil">Research Expert</div>
-          </div>
-        </article>
-
-        <article class="speaker-card">
-          <div class="speaker-photo" role="img" aria-label="Speaker photo placeholder">Photo placeholder</div>
-          <div class="speaker-meta">
-            <div class="speaker-name">Speaker 3</div>
-            <div class="speaker-affil">ENSTA Paris</div>
-          </div>
-        </article>
-
-        <article class="speaker-card">
-          <div class="speaker-photo" role="img" aria-label="Speaker photo placeholder">Photo placeholder</div>
-          <div class="speaker-meta">
-            <div class="speaker-name">Speaker 4</div>
-            <div class="speaker-affil">Research Expert</div>
-          </div>
-        </article>
-      </div>
-
-      <p class="note" style="margin-top:12px;">
-        
-      </p>
-    </section>
-
-
-    <!-- Program -->
-    <section id="program">
-        <div class="section-head">
-          <h2>Workshop Program</h2>
-          <p class="subtle">Program schedule (draft; subject to update).</p>
-        </div>
-
-        <div class="program-wrap">
-          <div class="card program-card">
-            <div class="card-body">
-              <div class="table-scroll" aria-label="Scrollable program table wrapper">
-                <table class="program-table" aria-label="Program B table">
-            <thead><tr><th>Time</th><th>Activity</th></tr></thead>
-            <tbody>
-              <tr><td>8:45</td><td>Welcome and Introduction</td></tr>
-              <tr><td>9:00</td><td>Invited Talk 1</td></tr>
-              <tr><td>9:20</td><td>Invited Talk 2</td></tr>
-              <tr><td>9:40</td><td>Breakout group discussion</td></tr>
-              <tr><td>10:00</td><td>Coffee break + poster + lightning talk video</td></tr>
-              <tr><td>10:20</td><td>Invited Talk 3</td></tr>
-              <tr><td>10:40</td><td>Invited Talk 4</td></tr>
-              <tr><td>11:00</td><td>Breakout group discussion</td></tr>
-              <tr><td>11:20</td><td>Coffee break + poster + lightning talk video</td></tr>
-              <tr><td>11:40</td><td>Panel Discussion, lessons-learned report</td></tr>
-              <tr><td>12:10</td><td>Closing</td></tr>
-            </tbody>
-          </table>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-    <!-- Organizers -->
-    
-    <!-- Organizers -->
-    
-    <!-- Organizers -->
-    <section id="organizers" aria-label="Organizing committee">
-      <div class="section-head">
-        <div>
-          <h2>Organizing Committee</h2>
-          <p class="section-subtitle">An interdisciplinary team spanning HRI, AI, and robotics.</p>
-        </div>
-        <div class="meta-line">
-          <span class="badge"><span class="mini-dot" aria-hidden="true"></span>Photos are placeholders</span>
-        </div>
-      </div>
-
-      <div class="speaker-grid" aria-label="Organizer cards">
-        <article class="speaker-card">
-          <div class="speaker-photo" role="img" aria-label="Organizer photo placeholder"><img src="assets/images/HEI.jpg" alt="HEI"/></div>
-          <div class="speaker-meta">
-            <div class="speaker-name">Xiaoxuan HEI</div>
-            <div class="speaker-affil">Affiliation TBD</div>
-          </div>
-        </article>
- <article class="speaker-card">
-          <div class="speaker-photo" role="img" aria-label="Organizer photo placeholder"><img src="assets/images/DrMohammad.png" alt="Dr. Mohammad Al Sada"/></div>
-          <div class="speaker-meta">
-            <div class="speaker-name">Mohammed Al Sada</div>
-            <div class="speaker-affil">Affiliation TBD</div>
-          </div>
-        </article>
-        <article class="speaker-card">
-          <div class="speaker-photo" role="img" aria-label="Organizer photo placeholder">Photo placeholder</div>
-          <div class="speaker-meta">
-            <div class="speaker-name">Karatas Nihan</div>
-            <div class="speaker-affil">Affiliation TBD</div>
-          </div>
-        </article>
-
-        <article class="speaker-card">
-          <div class="speaker-photo" role="img" aria-label="Organizer photo placeholder"><img src="assets/images/NezihaAkalin.png" alt="Neziha Akalin"/></div>
-          <div class="speaker-meta">
-            <div class="speaker-name">Neziha Akalin</div>
-            <div class="speaker-affil">Affiliation TBD</div>
-          </div>
-        </article>
-
-       
-
-        <article class="speaker-card">
-          <div class="speaker-photo" role="img" aria-label="Organizer photo placeholder">Photo placeholder</div>
-          <div class="speaker-meta">
-            <div class="speaker-name">Faisal Al Jaber</div>
-            <div class="speaker-affil">Affiliation TBD</div>
-          </div>
-        </article>
-
-        <article class="speaker-card">
-          <div class="speaker-photo" role="img" aria-label="Organizer photo placeholder"><img src="assets/images/TamonMiyake.png" alt="Tamon Miyake"/></div>
-          <div class="speaker-meta">
-            <div class="speaker-name">Tamon Miyake</div>
-            <div class="speaker-affil">Affiliation TBD</div>
-          </div>
-        </article>
-         <article class="speaker-card">
-          <div class="speaker-photo" role="img" aria-label="Organizer photo placeholder"><img src="assets/images/AdrianaTapus.png" alt="Adriana Tapus"/></div>
-          <div class="speaker-meta">
-            <div class="speaker-name">Adriana Tapus</div>
-            <div class="speaker-affil">Affiliation TBD</div>
-          </div>
-        </article>
-      </div>
-
-      <p class="note" style="margin-top:12px;">
-        
-      </p>
-    </section>
-
-
-
-    <!-- Audience -->
-    <section id="audience" aria-label="Intended audience">
-      <div class="section-head">
-        <div>
-          <h2>Intended Audience</h2>
-          <p class="section-subtitle">Who should attend this workshop?</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <p style="margin:0; color:rgba(20,20,20,.74); font-weight:600;">
+<ul class="list">
+<li><b>Format:</b> SHORT PAPER / EXTENDED ABSTRACT (TBD)</li>
+<li><b>Length:</b> X pages (TBD)</li>
+<li><b>Submission link:</b> TBD</li>
+<li><b>Presentation:</b> Poster + optional lightning video</li>
+</ul>
+<div class="callout" style="margin-top:14px;">
+<p><strong>Poster visibility:</strong> Poster presenters prepare a 1-minute lightning talk video. Videos are promoted on social media, played during breaks, and linked on the workshop website.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></div></section>
+<!-- Speakers --> <!-- Speakers -->
+<!-- Speakers -->
+<section aria-label="Invited speakers" id="speakers">
+<div class="section-head">
+<div>
+<h2>Invited Speakers</h2>
+<p class="section-subtitle">Leading experts sharing complementary perspectives.</p>
+</div>
+<div class="meta-line">
+<span class="badge"><span aria-hidden="true" class="mini-dot"></span>Photos are placeholders</span>
+</div>
+</div>
+<div aria-label="Speaker cards" class="speaker-grid">
+<article class="speaker-card">
+<div aria-label="Speaker photo placeholder" class="speaker-photo" role="img">Photo placeholder</div>
+<div class="speaker-meta">
+<div class="speaker-name">Speaker 1</div>
+<div class="speaker-affil">Stanford University</div>
+</div>
+</article>
+<article class="speaker-card">
+<div aria-label="Speaker photo placeholder" class="speaker-photo" role="img">Photo placeholder</div>
+<div class="speaker-meta">
+<div class="speaker-name">Speaker 2</div>
+<div class="speaker-affil">Research Expert</div>
+</div>
+</article>
+<article class="speaker-card">
+<div aria-label="Speaker photo placeholder" class="speaker-photo" role="img">Photo placeholder</div>
+<div class="speaker-meta">
+<div class="speaker-name">Speaker 3</div>
+<div class="speaker-affil">ENSTA Paris</div>
+</div>
+</article>
+<article class="speaker-card">
+<div aria-label="Speaker photo placeholder" class="speaker-photo" role="img">Photo placeholder</div>
+<div class="speaker-meta">
+<div class="speaker-name">Speaker 4</div>
+<div class="speaker-affil">Research Expert</div>
+</div>
+</article>
+</div>
+<p class="note" style="margin-top:12px;">
+</p>
+</section>
+<!-- Program -->
+<section id="program">
+<div class="section-head">
+<h2>Workshop Program</h2>
+<p class="subtle">Program schedule (draft; subject to update).</p>
+</div>
+<div class="program-wrap">
+<div class="card program-card">
+<div class="card-body">
+<div aria-label="Scrollable program table wrapper" class="table-scroll">
+<table aria-label="Program B table" class="program-table">
+<thead><tr><th>Time</th><th>Activity</th></tr></thead>
+<tbody>
+<tr><td>8:45</td><td>Welcome and Introduction</td></tr>
+<tr><td>9:00</td><td>Invited Talk 1</td></tr>
+<tr><td>9:20</td><td>Invited Talk 2</td></tr>
+<tr><td>9:40</td><td>Breakout group discussion</td></tr>
+<tr><td>10:00</td><td>Coffee break + poster + lightning talk video</td></tr>
+<tr><td>10:20</td><td>Invited Talk 3</td></tr>
+<tr><td>10:40</td><td>Invited Talk 4</td></tr>
+<tr><td>11:00</td><td>Breakout group discussion</td></tr>
+<tr><td>11:20</td><td>Coffee break + poster + lightning talk video</td></tr>
+<tr><td>11:40</td><td>Panel Discussion, lessons-learned report</td></tr>
+<tr><td>12:10</td><td>Closing</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Organizers -->
+<!-- Organizers -->
+<!-- Organizers -->
+<section aria-label="Organizing committee" id="organizers">
+<div class="section-head">
+<div>
+<h2>Organizing Committee</h2>
+<p class="section-subtitle">An interdisciplinary team spanning HRI, AI, and robotics.</p>
+</div>
+<div class="meta-line">
+<span class="badge"><span aria-hidden="true" class="mini-dot"></span>Photos are placeholders</span>
+</div>
+</div>
+<div aria-label="Organizer cards" class="speaker-grid">
+<article class="speaker-card">
+<div aria-label="Organizer photo placeholder" class="speaker-photo" role="img"><img alt="HEI" src="assets/images/HEI.jpg"/></div>
+<div class="speaker-meta">
+<div class="speaker-name">Xiaoxuan HEI</div>
+<div class="speaker-affil">Affiliation TBD</div>
+</div>
+</article>
+<article class="speaker-card">
+<div aria-label="Organizer photo placeholder" class="speaker-photo" role="img"><img alt="Dr. Mohammad Al Sada" src="assets/images/DrMohammad.png"/></div>
+<div class="speaker-meta">
+<div class="speaker-name">Mohammed Al Sada</div>
+<div class="speaker-affil">Affiliation TBD</div>
+</div>
+</article>
+<article class="speaker-card">
+<div aria-label="Organizer photo placeholder" class="speaker-photo" role="img">Photo placeholder</div>
+<div class="speaker-meta">
+<div class="speaker-name">Karatas Nihan</div>
+<div class="speaker-affil">Affiliation TBD</div>
+</div>
+</article>
+<article class="speaker-card">
+<div aria-label="Organizer photo placeholder" class="speaker-photo" role="img"><img alt="Neziha Akalin" src="assets/images/NezihaAkalin.png"/></div>
+<div class="speaker-meta">
+<div class="speaker-name">Neziha Akalin</div>
+<div class="speaker-affil">Affiliation TBD</div>
+</div>
+</article>
+<article class="speaker-card">
+<div aria-label="Organizer photo placeholder" class="speaker-photo" role="img">Photo placeholder</div>
+<div class="speaker-meta">
+<div class="speaker-name">Faisal Al Jaber</div>
+<div class="speaker-affil">Affiliation TBD</div>
+</div>
+</article>
+<article class="speaker-card">
+<div aria-label="Organizer photo placeholder" class="speaker-photo" role="img"><img alt="Tamon Miyake" src="assets/images/TamonMiyake.png"/></div>
+<div class="speaker-meta">
+<div class="speaker-name">Tamon Miyake</div>
+<div class="speaker-affil">Affiliation TBD</div>
+</div>
+</article>
+<article class="speaker-card">
+<div aria-label="Organizer photo placeholder" class="speaker-photo" role="img"><img alt="Adriana Tapus" src="assets/images/AdrianaTapus.png"/></div>
+<div class="speaker-meta">
+<div class="speaker-name">Adriana Tapus</div>
+<div class="speaker-affil">Affiliation TBD</div>
+</div>
+</article>
+</div>
+<p class="note" style="margin-top:12px;">
+</p>
+</section>
+<!-- Audience -->
+<section aria-label="Intended audience" id="audience">
+<div class="section-head">
+<div>
+<h2>Intended Audience</h2>
+<p class="section-subtitle">Who should attend this workshop?</p>
+</div>
+</div>
+<div class="card">
+<p style="margin:0; color:rgba(20,20,20,.74); font-weight:600;">
           This workshop targets an interdisciplinary audience of researchers and practitioners in Human–Robot Interaction (HRI), robotics, artificial intelligence, and related fields who are interested in transforming multimodal human data into adaptive robot behavior. It is particularly relevant for those working on human state understanding, multimodal sensing and fusion, learning and modeling for interaction, and real-time behavioral adaptation.
         </p>
-        <p style="margin:12px 0 0; color:rgba(20,20,20,.74); font-weight:600;">
+<p style="margin:12px 0 0; color:rgba(20,20,20,.74); font-weight:600;">
           The workshop will also attract researchers concerned with trustworthy and responsible robotics, including issues of human agency, over-reliance, and ethical use of sensitive data, as well as those developing or deploying adaptive robotic systems in domains such as social interaction, teleoperation, and safety-critical applications.
         </p>
-      </div>
-
-      <div class="grid" style="margin-top:14px;">
-        <div class="card col-4"><h3>Human State Understanding</h3><p>Modeling internal states during interaction.</p></div>
-        <div class="card col-4"><h3>Multimodal Sensing & Fusion</h3><p>Combining signals reliably across modalities.</p></div>
-        <div class="card col-4"><h3>Learning & Modeling for Interaction</h3><p>Policies and models grounded in HRI.</p></div>
-        <div class="card col-4"><h3>Real-time Behavioral Adaptation</h3><p>Online inference and action selection.</p></div>
-        <div class="card col-4"><h3>Trustworthy & Responsible Robotics</h3><p>Agency, calibration, transparency.</p></div>
-        <div class="card col-4"><h3>Safety-Critical Applications</h3><p>Robustness for real-world deployment.</p></div>
-      </div>
-    </section>
-
-    <!-- Dissemination -->
+</div>
+<div class="grid" style="margin-top:14px;">
+<div class="card col-4"><h3>Human State Understanding</h3><p>Modeling internal states during interaction.</p></div>
+<div class="card col-4"><h3>Multimodal Sensing &amp; Fusion</h3><p>Combining signals reliably across modalities.</p></div>
+<div class="card col-4"><h3>Learning &amp; Modeling for Interaction</h3><p>Policies and models grounded in HRI.</p></div>
+<div class="card col-4"><h3>Real-time Behavioral Adaptation</h3><p>Online inference and action selection.</p></div>
+<div class="card col-4"><h3>Trustworthy &amp; Responsible Robotics</h3><p>Agency, calibration, transparency.</p></div>
+<div class="card col-4"><h3>Safety-Critical Applications</h3><p>Robustness for real-world deployment.</p></div>
+</div>
+</section>
+<!-- Dissemination -->
 <!-- Contact -->
-    
-    <!-- Sponsors -->
-    <section id="sponsors" aria-label="Sponsors">
-      <div class="section-head">
-        <div>
-          <h2>Sponsors</h2>
-          <p class="section-subtitle">This workshop is sponsored by QMIC and KINDI.</p>
-        </div>
-      </div>
-
-      <div class="sponsor-grid" role="list" aria-label="Sponsor logos">
-        <div class="sponsor-card" role="listitem">
-          <img class="sponsor-logo" src="assets/images/qmic-logo.svg" alt="QMIC logo">
-          <div class="sponsor-name">QMIC</div>
-          <div class="sponsor-note">Qatar Mobility Innovations Center</div>
-        </div>
-
-        <div class="sponsor-card" role="listitem">
-          <img class="sponsor-logo" src="assets/images/kindi-logo.png" alt="KINDI logo">
-          <div class="sponsor-name">KINDI</div>
-          <div class="sponsor-note">KINDI Center for Computing Research</div>
-        </div>
-      </div>
-    </section>
-
-
-<section id="contact" aria-label="Contact">
-      <div class="section-head">
-        <div>
-          <h2>Contact</h2>
-          <p class="section-subtitle">For questions, sponsorship, or participation inquiries, reach out to the workshop team.</p>
-        </div>
-      </div>
-
-      <div class="email-card" aria-label="Workshop email">
-        <h3 class="card-title">Email</h3>
-        <p class="muted" style="margin:0 0 10px;">For inquiries about the workshop, please contact the organizing committee at:</p>
-        <p class="email-link"><a href="mailto:alsada@qmic.com">workshop@qmic.com</a></p>
-        <p class="muted" style="margin:0;">Replace the email with the official address once available.</p>
-      </div>
-
-    </section>
-  </main>
-
-  
-    <!-- Location Map (full width) -->
-    <section id="location" aria-label="Location map" class="map-fullbleed">
-      <div class="map-fullbleed-inner">
-        <iframe
-          title="KINDI Center for Computing Research - Google Map"
-          src="https://www.google.com/maps?q=KINDI%20Center%20for%20Computing%20Research%2C%20Qatar%20University%2C%20Doha&output=embed"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          allowfullscreen>
-        </iframe>
-      </div>
-    </section>
-
+<!-- Sponsors -->
+<section aria-label="Sponsors" id="sponsors">
+<div class="section-head">
+<div>
+<h2>Sponsors</h2>
+<p class="section-subtitle">This workshop is sponsored by QMIC and KINDI.</p>
+</div>
+</div>
+<div aria-label="Sponsor logos" class="sponsor-grid" role="list">
+<div class="sponsor-card" role="listitem">
+<img alt="QMIC logo" class="sponsor-logo" src="assets/images/qmic-logo.svg"/>
+<div class="sponsor-name">QMIC</div>
+<div class="sponsor-note">Qatar Mobility Innovations Center</div>
+</div>
+<div class="sponsor-card" role="listitem">
+<img alt="KINDI logo" class="sponsor-logo" src="assets/images/kindi-logo.png"/>
+<div class="sponsor-name">KINDI</div>
+<div class="sponsor-note">KINDI Center for Computing Research</div>
+</div>
+</div>
+</section>
+<section aria-label="Contact" id="contact">
+<div class="section-head">
+<div>
+<h2>Contact</h2>
+<p class="section-subtitle">For questions, sponsorship, or participation inquiries, reach out to the workshop team.</p>
+</div>
+</div>
+<div aria-label="Workshop email" class="email-card">
+<h3 class="card-title">Email</h3>
+<p class="muted" style="margin:0 0 10px;">For inquiries about the workshop, please contact the organizing committee at:</p>
+<p class="email-link"><a href="mailto:alsada@qmic.com">workshop@qmic.com</a></p>
+<p class="muted" style="margin:0;">Replace the email with the official address once available.</p>
+</div>
+</section>
+</main>
+<!-- Location Map (full width) -->
+<section aria-label="Location map" class="map-fullbleed" id="location">
+<div class="map-fullbleed-inner">
+<iframe allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=KINDI%20Center%20for%20Computing%20Research%2C%20Qatar%20University%2C%20Doha&amp;output=embed" title="KINDI Center for Computing Research - Google Map">
+</iframe>
+</div>
+</section>
 <footer>
-    <div class="container">
-      <div class="footer-grid">
-        <div>
-          <div style="display:flex; align-items:center; gap:10px;">
-            <div class="brand-badge" aria-hidden="true" style="width:34px;height:34px;border-radius:12px;"></div>
-            <div>
-              <div style="font-weight:1000;">ROMAN 2026 Workshop</div>
-              <div style="color:rgba(255,255,255,.70); font-size:12px;">Human State-Aware Robotics</div>
-            </div>
-          </div>
-          <div class="foot-note">
+<div class="container">
+<div class="footer-grid">
+<div>
+<div style="display:flex; align-items:center; gap:10px;">
+<div aria-hidden="true" class="brand-badge" style="width:34px;height:34px;border-radius:12px;"></div>
+<div>
+<div style="font-weight:1000;">ROMAN 2026 Workshop</div>
+<div style="color:rgba(255,255,255,.70); font-size:12px;">Human State-Aware Robotics</div>
+</div>
+</div>
+<div class="foot-note">
             © <span id="year"></span> · Replace venue/date details and links when finalized.
           </div>
-        </div>
-        <div class="backtop">
-          <a class="btn btn-outline" href="#top" style="border-color:rgba(255,255,255,.18); background:rgba(255,255,255,.08); color:#fff;">Back to top</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <script>
+</div>
+<div class="backtop">
+<a class="btn btn-outline" href="#top" style="border-color:rgba(255,255,255,.18); background:rgba(255,255,255,.08); color:#fff;">Back to top</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
     // Footer year
     document.getElementById("year").textContent = new Date().getFullYear();
 
