@@ -1382,37 +1382,118 @@ html { scroll-behavior: smooth; }
   </div>
 </section>
 
-<section class="section section-cfp" id="cfp">
-<div class="container">
-  <div>
-    <h2>Call for Participation</h2>
-    <p>Start by selecting a topic of interest. We’ll then show the recommended next steps to submit to the workshop.</p>
+<section id="cfp" aria-label="Call for participation">
+  <div class="section-head">
+    <div>
+      <h2>Call for Participation</h2>
+      <p class="section-subtitle">
+        We welcome short papers, extended abstracts, and posters that advance human state-aware robotics for real-world HRI.
+      </p>
+    </div>
+  </div>
+
+  <div class="cfp">
+    <div class="card">
+      <h3>What to submit</h3>
+      <p>
+        Submit work that connects multimodal human data to adaptive robot behavior—methods, datasets, studies, systems, or lessons learned. We particularly encourage contributions that address robustness, responsible data practices, and deployment in-the-wild.
+      </p>
+      <ul class="list">
+        <li><b>Format:</b> SHORT PAPER / EXTENDED ABSTRACT (TBD)</li>
+        <li><b>Length:</b> X pages (TBD)</li>
+        <li><b>Submission link:</b> TBD</li>
+        <li><b>Presentation:</b> Poster + optional lightning video</li>
+      </ul>
+
+      <div class="callout" style="margin-top:14px;">
+        <p><strong>Poster visibility:</strong> Poster presenters prepare a 1-minute lightning talk video. Videos are promoted on social media, played during breaks, and linked on the workshop website.</p>
+      </div>
     </div>
 
-<!-- Step 2: CFP becomes the next action -->
-<div class="subsection cfp-subsection" id="cfp-next">
-<div class="grid cfp-flow">
+    </div>
 
-<div class="col-12" id="submission-details">
-<div class="card">
-<h3>What to submit</h3>
-<p>
-            Submit work that connects multimodal human data to adaptive robot behavior—methods, datasets, studies, systems, or lessons learned. We particularly encourage contributions that address robustness, responsible data practices, and deployment in-the-wild.
-          </p>
-<ul class="list">
-<li><b>Format:</b> SHORT PAPER / EXTENDED ABSTRACT (TBD)</li>
-<li><b>Length:</b> X pages (TBD)</li>
-<li><b>Submission link:</b> TBD</li>
-<li><b>Presentation:</b> Poster + optional lightning video</li>
-</ul>
-<div class="callout" style="margin-top:14px;">
-<p><strong>Poster visibility:</strong> Poster presenters prepare a 1-minute lightning talk video. Videos are promoted on social media, played during breaks, and linked on the workshop website.</p>
+
+
+<div id="topics" class="subsection topics-subsection">
+   
+    <div class="grid">
+
+    <div class="card col-4">
+      <div class="icon-chip" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M12 2a4 4 0 0 0-4 4v2H6a2 2 0 0 0-2 2v6a6 6 0 1 0 12 0v-2h2a2 2 0 0 0 2-2V8a6 6 0 0 0-10-6Zm-2 6V6a2 2 0 0 1 4 0v2h-4Z"/></svg>
+      </div>
+      <h3>Multimodal Sensing</h3>
+      <p>Gaze, speech, motion, physiological signals for HRI.</p>
+    </div>
+
+    <div class="card col-4">
+      <div class="icon-chip" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M12 2 1 7l11 5 9-4.09V17h2V7L12 2Zm0 12L1 9v11l11 5 11-5V9l-11 5Z"/></svg>
+      </div>
+      <h3>Human State Estimation</h3>
+      <p>Engagement, stress, fatigue, mind wandering detection.</p>
+    </div>
+
+    <div class="card col-4">
+      <div class="icon-chip" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M21 7h-6V3h6v4Zm-2-2h-2v0h2V5ZM21 21h-6v-4h6v4Zm-2-2h-2v0h2v0ZM9 7H3V3h6v4ZM7 5H5v0h2V5Zm2 16H3v-4h6v4Zm-2-2H5v0h2v0Zm4-14h2v14h-2V5Z"/></svg>
+      </div>
+      <h3>Data Challenges</h3>
+      <p>Alignment, missing data, dataset bias, robustness.</p>
+    </div>
+
+    <div class="card col-4">
+      <div class="icon-chip" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7v2a3 3 0 0 0 3 3h1v3a3 3 0 0 0 6 0v-3h1a3 3 0 0 0 3-3V9a7 7 0 0 0-7-7Zm-1 18a1 1 0 0 1-2 0v-5h2v5Zm6 0a1 1 0 0 1-2 0v-5h2v5Zm2-9a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V9a5 5 0 0 1 10 0v2Z"/></svg>
+      </div>
+      <h3>Adaptive Learning</h3>
+      <p>Supervised, RL, imitation, LLM-based interaction policies.</p>
+    </div>
+
+    <div class="card col-4">
+      <div class="icon-chip" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10.01 10.01 0 0 0 12 2Zm1 17.93V19h-2v.93A8.01 8.01 0 0 1 4.07 13H5v-2H4.07A8.01 8.01 0 0 1 11 4.07V5h2V4.07A8.01 8.01 0 0 1 19.93 11H19v2h.93A8.01 8.01 0 0 1 13 19.93Z"/></svg>
+      </div>
+      <h3>Online Adaptation</h3>
+      <p>Real-time learning and human-in-the-loop systems.</p>
+    </div>
+
+    <div class="card col-4">
+      <div class="icon-chip" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M12 1 3 5v6c0 5 3.8 9.7 9 11 5.2-1.3 9-6 9-11V5l-9-4Zm0 2.2L19 6v5c0 3.9-2.8 7.8-7 9-4.2-1.2-7-5.1-7-9V6l7-2.8Z"/></svg>
+      </div>
+      <h3>Trustworthy Robotics</h3>
+      <p>Calibration, over-reliance, transparency, human agency.</p>
+    </div>
+
+    <div class="card col-4">
+      <div class="icon-chip" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7v4a3 3 0 0 0 3 3h1v-2H8a1 1 0 0 1-1-1V9a5 5 0 0 1 10 0v5a1 1 0 0 1-1 1h-1v2h1a3 3 0 0 0 3-3V9a7 7 0 0 0-7-7Z"/></svg>
+      </div>
+      <h3>Ethics & Privacy</h3>
+      <p>Biosignals in the wild: privacy, consent, data governance.</p>
+    </div>
+
+    <div class="card col-4">
+      <div class="icon-chip" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16v2H4V4Zm0 14h16v2H4v-2Zm0-7h16v2H4v-2Z"/></svg>
+      </div>
+      <h3>Applications</h3>
+      <p>Social robots, teleoperation, assistive robots, safety-critical HRI.</p>
+    </div>
+
+    <div class="card col-4">
+      <div class="icon-chip" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M12 3 2 9l10 6 10-6-10-6Zm0 10L2 7v10l10 6 10-6V7l-10 6Z"/></svg>
+      </div>
+      <h3>Responsible Sharing</h3>
+      <p>De-identification, access control, reproducibility best practices.</p>
+    </div>
+  </div>
 </div>
-</div>
-</div>
-</div>
-</div>
-</div></div></section>
+
+</section>
+
 <!-- Speakers --> <!-- Speakers -->
 <!-- Speakers -->
 <section aria-label="Invited speakers" id="speakers">
