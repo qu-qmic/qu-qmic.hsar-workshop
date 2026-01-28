@@ -281,7 +281,11 @@
   backdrop-filter: blur(6px);
   font-weight: 700;
   letter-spacing: .2px;
+  color: #fff;
+  text-decoration: none;
 }
+.hero-pill:hover{ filter: brightness(1.05); }
+.hero-pill:focus-visible{ outline: 3px solid rgba(255,255,255,0.45); outline-offset: 3px; }
 .hero-tagline{
   opacity: .92;
   font-weight: 600;
@@ -1241,7 +1245,7 @@ html { scroll-behavior: smooth; }
 <div aria-hidden="true" class="hero-bg"></div>
 <div class="hero-inner">
 <div class="hero-kicker">
- <a class="hero-pill" href="https://ro-man2026.org/" target="_blank" rel="noopener noreferrer">ROMAN 2026 Workshop</a>
+          <a class="hero-pill" href="https://ro-man2026.org/" target="_blank" rel="noopener noreferrer">ROMAN 2026 Workshop</a>
 <span class="hero-tagline">Human State‑Aware Robotics</span>
 </div>
 <h1>Human State‑Aware Robotics:<br/>From Multimodal Data to Human‑Adaptive Behavior in HRI</h1>
@@ -1305,10 +1309,10 @@ html { scroll-behavior: smooth; }
 
 <section class="section section-topics" id="topics">
   <div class="container">
-    <div class="section-head">
+    
       <h2>Topics of Interest</h2>
       <p class="muted">Browse the topics below. If your work matches one or more areas, see the Call for Participation details below.</p>
-    </div>
+   
 
     <div aria-label="Topics of Interest" class="grid topics-grid" id="topics-grid">
 <div class="card col-4 topic-card" role="button" tabindex="0">
@@ -1381,7 +1385,7 @@ html { scroll-behavior: smooth; }
 <section class="section section-cfp" id="cfp">
 <div class="container">
 <div class="section-head">
-<h2>Call for Participation</h2>
+<h3>Call for Participation</h3>
 <p class="muted">Start by selecting a topic of interest. We’ll then show the recommended next steps to submit to the workshop.</p>
 </div>
 <!-- Step 2: CFP becomes the next action -->
