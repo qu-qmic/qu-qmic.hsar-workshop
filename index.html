@@ -595,13 +595,13 @@
     .t-body b{display:block; font-size:13px}
     .t-body span{display:block; font-size:13px; color:rgba(20,20,20,.68)}
 
-    /* s (image-card style) */
-    .s-grid{
+    /* Speakers (image-card style) */
+    .speakers-grid{
       display:grid;
       grid-template-columns: repeat(12, minmax(0,1fr));
       gap:14px;
     }
-    .-card{
+    .speaker-card{
       grid-column: span 3;
       background:#fff;
       border:1px solid rgba(20,20,20,.08);
@@ -611,8 +611,8 @@
       min-width:0;
       transition: transform .15s, box-shadow .15s;
     }
-    .-card:hover{transform: translateY(-2px); box-shadow: var(--shadow-lg)}
-    .-photo{
+    .speaker-card:hover{transform: translateY(-2px); box-shadow: var(--shadow-lg)}
+    .speaker-photo{
       aspect-ratio: 4 / 3;
       background:
         radial-gradient(520px 260px at 70% 20%, rgba(153,187,31,.22), transparent 60%),
@@ -626,17 +626,17 @@
       letter-spacing:.2px;
       border-bottom:1px solid rgba(20,20,20,.06);
     }
-    .-photo small{font-weight:900; font-size:13px; opacity:.9}
-    .-body{
+    .speaker-photo small{font-weight:900; font-size:13px; opacity:.9}
+    .speaker-body{
       padding:14px 14px 18px;
       text-align:center;
     }
-    .-body b{
+    .speaker-body b{
       display:block;
       font-size:18px;
       letter-spacing:-.2px;
     }
-    .-body span{
+    .speaker-body span{
       display:block;
       margin-top:6px;
       color: rgba(20,20,20,.60);
@@ -715,14 +715,14 @@
 
     
 
-    /* s (photo-first cards like reference) */
-    .-grid{
+    /* Speakers (photo-first cards like reference) */
+    .speaker-grid{
       display:grid;
       grid-template-columns: repeat(12, minmax(0, 1fr));
       gap: 16px;
     
     }
-    .-card{
+    .speaker-card{
       grid-column: span 3;
       background:#fff;
       border: 1px solid rgba(20,20,20,.08);
@@ -731,7 +731,7 @@
       box-shadow: var(--shadow);
       min-width:0;
     }
-    .-photo{
+    .speaker-photo{
       height: 240px;
       display:flex;
       align-items:center;
@@ -744,28 +744,28 @@
         linear-gradient(#f7f7f7, #f7f7f7);
       border-bottom: 1px solid rgba(20,20,20,.06);
     }
-    .-meta{
+    .speaker-meta{
       padding: 16px 16px 18px;
       text-align:center;
     }
-    .-name{
+    .speaker-name{
       font-weight:1000;
       font-size: 18px;
       letter-spacing: -.2px;
     }
-    .-affil{
+    .speaker-affil{
       margin-top: 6px;
       color: rgba(20,20,20,.58);
       font-weight: 800;
     }
 
     @media (max-width: 980px){
-      .-card{grid-column: span 6}
-      .-photo{height: 220px}
+      .speaker-card{grid-column: span 6}
+      .speaker-photo{height: 220px}
     }
     @media (max-width: 520px){
-      .-card{grid-column: span 12}
-      .-photo{height: 240px}
+      .speaker-card{grid-column: span 12}
+      .speaker-photo{height: 240px}
     }
 
 /* Footer */
@@ -793,7 +793,7 @@
 
     /* Responsive */
     @media (max-width: 980px){
-      .-card{grid-column: span 4}
+      .speaker-card{grid-column: span 4}
       .nav-list{gap:10px}
       .nav-list a{padding:10px 8px}
       .cfp{grid-template-columns:1fr}
@@ -805,7 +805,7 @@
       .col-8{grid-column: span 12}
     }
     @media (max-width: 780px){
-      .-card{grid-column: span 6}
+      .speaker-card{grid-column: span 6}
       .nav-list, .nav-actions .btn-outline{display:none}
       .hamburger{display:flex}
       .person{grid-column: span 6}
@@ -813,7 +813,7 @@
       .timeline{display:grid; gap:10px}
     }
     @media (max-width: 520px){
-      .-card{grid-column: span 12}
+      .speaker-card{grid-column: span 12}
       .person{grid-column: span 12}
       .brand-text span{display:none}
     }
@@ -996,7 +996,7 @@
     footer{ margin-top: 0 !important; padding-top: 0 !important; }
 
 /* Grid safety: ensure key grids render as grids */
-.-grid{display:grid;}
+.speaker-grid{display:grid;}
 .sponsor-grid{display:grid;}
 .contact-grid{display:grid;}
 
@@ -1027,7 +1027,7 @@
   .email-watermark{ font-size: 28px; }
 }
 
-/* --- Mobile fixes (program table +  placeholder) --- */
+/* --- Mobile fixes (program table + speaker placeholder) --- */
 .program-card{overflow-x:auto;}
 .table-scroll{overflow-x:auto; -webkit-overflow-scrolling: touch;}
 .table-scroll .program-table{min-width: 520px;}
@@ -1035,33 +1035,33 @@
   .table-scroll .program-table{min-width: 460px;}
   .program-table th, .program-table td{padding: 12px 14px;}
 }
-/*  photo placeholder should always fill card width */
-.-photo{
+/* Speaker photo placeholder should always fill card width */
+.speaker-photo{
   width: 100%;
   height: 260px;
   aspect-ratio: auto;
 }
 @media (max-width: 560px){
-  .-photo{height: 220px;}
+  .speaker-photo{height: 220px;}
 }
 
-/* === V21 FIX: s/Organizers grid + photo fill === */
-.-grid, .s-grid{
+/* === V21 FIX: Speakers/Organizers grid + photo fill === */
+.speaker-grid, .speakers-grid{
   display:grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: 16px;
 }
-.-card{
+.speaker-card{
   grid-column: span 4; /* 3 cards per row on desktop */
 }
 @media (max-width: 980px){
-  .-card{ grid-column: span 6; } /* 2 per row */
+  .speaker-card{ grid-column: span 6; } /* 2 per row */
 }
 @media (max-width: 520px){
-  .-card{ grid-column: span 12; } /* 1 per row */
+  .speaker-card{ grid-column: span 12; } /* 1 per row */
 }
 /* Photo area: supports both <img> and background-image usage */
-.-photo{
+.speaker-photo{
   position: relative;
   overflow: hidden;
   height: auto;
@@ -1069,14 +1069,14 @@
   background-size: cover;
   background-position: center;
 }
-.-photo img{
+.speaker-photo img{
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 /* Keep placeholder text centered if no image */
-.-photo:has(img){
+.speaker-photo:has(img){
   color: transparent; /* hides any leftover placeholder text nodes */
 }
 @supports not selector(:has(*)){
@@ -1420,11 +1420,10 @@ Professor, Waseda University</div>
 </div>
 </article>
 <article class="speaker-card">
-<div aria-label="Speaker photo placeholder" class="speaker-photo" role="img"><img alt="ShogoOkada" src="assets/images/ShogoOkada.jpg"/></div>
+<div aria-label="Speaker photo placeholder" class="speaker-photo" role="img">Photo placeholder</div>
 <div class="speaker-meta">
-<div class="speaker-name">Shogo Okada</div>
-<div class="speaker-affil">Adviser to the President<br>Professor
-Japan Advanced Institute of Science and Technology</div>
+<div class="speaker-name">Speaker 2</div>
+<div class="speaker-affil">Research Expert</div>
 </div>
 </article>
 <article class="speaker-card">
