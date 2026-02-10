@@ -1156,6 +1156,92 @@ html { scroll-behavior: smooth; }
     display: inline-flex;
   }
 }
+
+/* === Speaker Bio Offcanvas (Bootstrap-like, no dependency) === */
+.offcanvas-overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.38);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease;
+  z-index: 1600;
+}
+.offcanvas-overlay.open{
+  opacity: 1;
+  pointer-events: auto;
+}
+.offcanvas{
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: min(460px, 92vw);
+  background: #fff;
+  transform: translateX(110%);
+  transition: transform .25s ease;
+  z-index: 1700;
+  box-shadow: -18px 0 30px rgba(0,0,0,.14);
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid rgba(20,20,20,.08);
+}
+.offcanvas.open{ transform: translateX(0); }
+
+.offcanvas-header{
+  padding: 16px 16px 12px;
+  border-bottom: 1px solid rgba(20,20,20,.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.offcanvas-title{
+  margin: 0;
+  font-size: 16px;
+  font-weight: 1000;
+  letter-spacing: -.2px;
+}
+.offcanvas-close{
+  width: 40px;
+  height: 40px;
+  border-radius: 14px;
+  border: 1px solid rgba(20,20,20,.12);
+  background: #fff;
+  cursor: pointer;
+  flex: 0 0 auto;
+}
+.offcanvas-close::before{
+  content: "×";
+  font-size: 26px;
+  line-height: 1;
+  display: block;
+  transform: translateY(-1px);
+  color: rgba(20,20,20,.8);
+}
+.offcanvas-body{
+  padding: 14px 16px 18px;
+  overflow: auto;
+  min-height: 0;
+}
+.offcanvas-body p{
+  margin: 0 0 12px;
+  color: rgba(20,20,20,.74);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.7;
+}
+.offcanvas-body p:last-child{ margin-bottom: 0; }
+
+/* Make speaker cards feel clickable */
+#speakers .speaker-card{ cursor: pointer; }
+#speakers .speaker-card:focus-within,
+#speakers .speaker-card:focus,
+#speakers .speaker-card:focus-visible{
+  outline: none;
+  box-shadow: var(--focus), var(--shadow-lg);
+}
+
 </style>
 </head>
 <body>
@@ -1430,7 +1516,7 @@ html { scroll-behavior: smooth; }
 </div>
 </div>
 <div aria-label="Speaker cards" class="speaker-grid">
-<article class="speaker-card">
+<article class="speaker-card" data-speaker="Tetsuya Ogata" tabindex="0" role="button" aria-label="Open bio for Tetsuya Ogata">
 <div aria-label="Speaker photo placeholder" class="speaker-photo" role="img"><img alt="TetsuyaOgata" src="assets/images/ogataSquarecrop.jpg"/></div>
 <div class="speaker-meta">
 <div class="speaker-name">Tetsuya Ogata</div>
@@ -1439,21 +1525,21 @@ Professor, Waseda University</div>
 </div>
 </article>
 
-<article class="speaker-card">
+<article class="speaker-card" data-speaker="Gentiane Venture" tabindex="0" role="button" aria-label="Open bio for Gentiane Venture">
 <div aria-label="Speaker photo placeholder" class="speaker-photo" role="img"><img alt="GentianeVenture" src="assets/images/GentianeVenture.jpg"/></div>
 <div class="speaker-meta">
 <div class="speaker-name">Gentiane Venture</div>
 <div class="speaker-affil">Professor of robotics, the University of Tokyo</div>
 </div>
 </article>
-<article class="speaker-card">
+<article class="speaker-card" data-speaker="Kristiina Jokinen" tabindex="0" role="button" aria-label="Open bio for Kristiina Jokinen">
 <div aria-label="Speaker photo placeholder" class="speaker-photo" role="img"><img alt="KristiinaJokinen" src="assets/images/KristiinaJokinen.jpg"/></div>
 <div class="speaker-meta">
 <div class="speaker-name">Kristiina Jokinen</div>
 <div class="speaker-affil">AIRC AIST Tokyo Waterfront; University of Helsinki and University of Tartu</div>
 </div>
 </article>
-      <article class="speaker-card">
+      <article class="speaker-card" data-speaker="Silvia Rossi" tabindex="0" role="button" aria-label="Open bio for Silvia Rossi">
 <div aria-label="Speaker photo placeholder" class="speaker-photo" role="img"><img alt="SilviaRossi" src="assets/images/SilviaRossi.jpg"/></div>
 <div class="speaker-meta">
 <div class="speaker-name">Silvia Rossi</div>
@@ -1906,6 +1992,97 @@ Professor, Waseda University</div>
     tick();
     setInterval(tick, 1000);
 })();</script>
+
+
+<!-- Speaker Bio Offcanvas -->
+<div class="offcanvas-overlay" id="speakerBioOverlay" aria-hidden="true"></div>
+
+<aside class="offcanvas" id="speakerBioCanvas" role="dialog" aria-modal="true" aria-labelledby="speakerBioTitle" aria-hidden="true">
+  <div class="offcanvas-header">
+    <h3 class="offcanvas-title" id="speakerBioTitle">Speaker Bio</h3>
+    <button class="offcanvas-close" id="speakerBioClose" type="button" aria-label="Close speaker bio"></button>
+  </div>
+  <div class="offcanvas-body" id="speakerBioBody">
+    <!-- Bio injected by JS -->
+  </div>
+</aside>
+
+
+<script>
+(function(){
+  const bios = {
+    "Kristiina Jokinen": ["Kristiina Jokinen is Senior Researcher at AIRC (Artificial Intelligence Research Center), AIST Tokyo Waterfront, Japan. After her PhD from UMIST, Manchester she was JSPS Research Fellow at NAIST in Japan and an Invited Researcher at ATR Research Labs in Kyoto. She was Nokia Foundation Fellow at Stanford University in 2006, NICT Visiting Professor at Doshisha University in 2009-10, and is a Life Member of Clare Hall at University of Cambridge. Before joining AIRC, she was Professor and Project Manager at University of Helsinki and at University of Tartu.","Her research focuses on spoken dialogue systems, multimodal communication (speech, gaze, gesturing), and human-robot interaction. She led the development of WikiTalk, a Wikipedia-based talking robot information system, and has been Principal Investigator in multiple international projects. She has published four books, and organised several international workshops including the northernmost spoken dialogue conference IWSDS 2016 in Lapland."],
+    "Gentiane Venture": ["Gentiane Venture is a French Roboticist working in academia in Tokyo. She is a professor with the University of Tokyo and a cross appointed fellow with AIST. Her research is rooted in human body dynamics and tries to design robot behaviors to achieve personalized human robot interaction. Her work is highly interdisciplinary and she collaborates with psychologists, physiologists, philosophers, artists, neuro-scientists, designers、ergonomists, bio-mechanists."],
+    "Tetsuya Ogata": ["Tetsuya Ogata, Ph.D. (Engineering) is a distinguished professor in the Department of Intermedia Art and Science at Waseda University’s School of Fundamental Science and Engineering in Tokyo, Japan, where he also serves as Director of the Institute for AI and Robotics. He is a Joint-Appointed Fellow at the Artificial Intelligence Research Center of the National Institute of Advanced Industrial Science and Technology (AIST), a Visiting Professor at the Research and Development Center for Large Language Models at the National Institute of Informatics (NII), and Research Supervisor for the JST CREST “Embodied AI Systems” program. Ogata is also Chairperson of the AI Robot Association (AIRoA).","His research focuses on cognitive robotics, deep predictive learning, and intelligent robotic systems, exploring mechanisms for human-like interaction and learning in robots. Over his career he has held positions at Kyoto University, RIKEN, and JST PRESTO, and he has been recognized with numerous awards, including the 2023 MEXT Award for Science and Technology for his contributions to robotics."],
+    "Silvia Rossi": ["Silvia Rossi, Ph.D. is a Full Professor of Computer Science in the Department of Electrical Engineering and Information Technologies at the University of Naples “Federico II” in Italy and the Scientific Director of the PRISCA Lab (Projects of Intelligent Robotics and Advanced Cognitive Systems). She received her M.Sc. in Physics from the University of Naples “Federico II” in 2001 and her Ph.D. in Information and Communication Technologies from the University of Trento in 2006.","Prof. Rossi leads and coordinates numerous European and national research projects focused on Socially Assistive Robotics, Human-Robot Interaction, Cognitive Architectures, adaptive autonomous systems, and user profiling, with the goal of creating robots that can effectively interact with and support people. She has chaired major international conferences in robotics and artificial intelligence, including IEEE RO-MAN, and serves on program committees for leading conferences in the field.","Her research has been published in more than 180 peer-reviewed journals and conference proceedings, and she holds editorial roles in several robotics journals. Additionally, she mentors students and researchers and contributes to advancing computational approaches that enable robots to adapt their behaviour to human users."]
+  };
+
+  const canvas = document.getElementById("speakerBioCanvas");
+  const overlay = document.getElementById("speakerBioOverlay");
+  const closeBtn = document.getElementById("speakerBioClose");
+  const titleEl = document.getElementById("speakerBioTitle");
+  const bodyEl = document.getElementById("speakerBioBody");
+
+  let lastFocus = null;
+
+  function openCanvas(name){
+    const bio = bios[name];
+    if(!bio) return;
+
+    lastFocus = document.activeElement;
+
+    titleEl.textContent = name;
+    bodyEl.innerHTML = bio.map(p => "<p>" + escapeHtml(p) + "</p>").join("");
+
+    overlay.classList.add("open");
+    canvas.classList.add("open");
+    overlay.setAttribute("aria-hidden", "false");
+    canvas.setAttribute("aria-hidden", "false");
+
+    closeBtn.focus();
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeCanvas(){
+    canvas.classList.remove("open");
+    overlay.classList.remove("open");
+    overlay.setAttribute("aria-hidden", "true");
+    canvas.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+
+    if(lastFocus && typeof lastFocus.focus === "function") {
+      lastFocus.focus();
+    }
+  }
+
+  function escapeHtml(str){
+    return String(str)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
+
+  document.querySelectorAll('#speakers .speaker-card[data-speaker]').forEach(card => {
+    card.addEventListener("click", () => openCanvas(card.getAttribute("data-speaker")));
+    card.addEventListener("keydown", (e) => {
+      if(e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        openCanvas(card.getAttribute("data-speaker"));
+      }
+    });
+  });
+
+  closeBtn.addEventListener("click", closeCanvas);
+  overlay.addEventListener("click", closeCanvas);
+  document.addEventListener("keydown", (e) => {
+    if(e.key === "Escape" && canvas.classList.contains("open")) {
+      closeCanvas();
+    }
+  });
+})();
+</script>
 
 </body>
 </html>
