@@ -1189,12 +1189,13 @@ html { scroll-behavior: smooth; }
 .offcanvas.open{ transform: translateX(0); }
 
 .offcanvas-header{
-  padding: 16px 16px 12px;
+  padding: 14px 16px;
   border-bottom: 1px solid rgba(20,20,20,.08);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
+  background: #f6f7f9; /* light header background */
 }
 .offcanvas-title{
   margin: 0;
@@ -1202,6 +1203,21 @@ html { scroll-behavior: smooth; }
   font-weight: 1000;
   letter-spacing: -.2px;
 }
+/* Offcanvas profile header */
+.offcanvas-profile{display:flex; align-items:center; gap:12px; min-width:0;}
+.offcanvas-avatar{
+  width:56px; height:56px; border-radius:999px; flex:0 0 56px;
+  background:#e9ecef; background-size:cover; background-position:center;
+  border:1px solid rgba(20,20,20,.08);
+  display:grid; place-items:center;
+  color:#6b7280; font-weight:800; font-size:16px;
+}
+.offcanvas-avatar::after{content:attr(data-initials);}
+.offcanvas-avatar.has-image::after{content:"";}
+.offcanvas-profile-meta{min-width:0;}
+.offcanvas-name{font-weight:800; font-size:16px; line-height:1.2; margin:0;}
+.offcanvas-affil{font-size:13px; color:#6b7280; line-height:1.25; margin-top:4px;}
+
 .offcanvas-close{
   width: 40px;
   height: 40px;
@@ -1997,9 +2013,15 @@ Professor, Waseda University</div>
 <!-- Speaker Bio Offcanvas -->
 <div class="offcanvas-overlay" id="speakerBioOverlay" aria-hidden="true"></div>
 
-<aside class="offcanvas" id="speakerBioCanvas" role="dialog" aria-modal="true" aria-labelledby="speakerBioTitle" aria-hidden="true">
+<aside class="offcanvas" id="speakerBioCanvas" role="dialog" aria-modal="true" aria-labelledby="speakerBioName" aria-hidden="true">
   <div class="offcanvas-header">
-    <h3 class="offcanvas-title" id="speakerBioTitle">Speaker Bio</h3>
+    <div class="offcanvas-profile">
+      <div id="speakerBioAvatar" class="offcanvas-avatar" data-initials="" aria-hidden="true"></div>
+      <div class="offcanvas-profile-meta">
+        <div class="offcanvas-name" id="speakerBioName">Speaker</div>
+        <div class="offcanvas-affil" id="speakerBioAffil">Affiliation</div>
+      </div>
+    </div>
     <button class="offcanvas-close" id="speakerBioClose" type="button" aria-label="Close speaker bio"></button>
   </div>
   <div class="offcanvas-body" id="speakerBioBody">
@@ -2020,19 +2042,50 @@ Professor, Waseda University</div>
   const canvas = document.getElementById("speakerBioCanvas");
   const overlay = document.getElementById("speakerBioOverlay");
   const closeBtn = document.getElementById("speakerBioClose");
-  const titleEl = document.getElementById("speakerBioTitle");
+  const nameEl = document.getElementById("speakerBioName");
+  const affilEl = document.getElementById("speakerBioAffil");
+  const avatarEl = document.getElementById("speakerBioAvatar");
   const bodyEl = document.getElementById("speakerBioBody");
 
   let lastFocus = null;
 
-  function openCanvas(name){
-    const bio = bios[name];
-    if(!bio) return;
+  function initialsFromName(name){
+    return (name || "")
+      .trim()
+      .split(/\s+/)
+      .filter(Boolean)
+      .slice(0, 2)
+      .map(w => w[0].toUpperCase())
+      .join("");
+  }
 
+  function openCanvas(key, triggerEl){
+    const html = bios[key] || "<p>Bio will be added soon.</p>";
     lastFocus = document.activeElement;
 
-    titleEl.textContent = name;
-    bodyEl.innerHTML = bio.map(p => "<p>" + escapeHtml(p) + "</p>").join("");
+    // Try to read name/affiliation/photo from the clicked speaker card
+    const card = triggerEl || document.querySelector('[data-speaker="' + key.replace(/"/g,'&quot;') + '"]');
+    const name = card?.querySelector(".speaker-name")?.textContent?.trim() || key;
+    const affilHTML = card?.querySelector(".speaker-affil")?.innerHTML?.trim() || "";
+
+    // Header content
+    if (nameEl) nameEl.textContent = name;
+    if (affilEl){
+      affilEl.innerHTML = affilHTML || "";
+      affilEl.style.display = affilHTML ? "" : "none";
+    }
+    if (avatarEl){
+      const imgSrc = card?.querySelector("img")?.getAttribute("src") || "";
+      avatarEl.classList.remove("has-image");
+      avatarEl.style.backgroundImage = "";
+      avatarEl.setAttribute("data-initials", initialsFromName(name) || "•");
+      if (imgSrc){
+        avatarEl.style.backgroundImage = 'url("' + imgSrc.replace(/"/g,'\\"') + '")';
+        avatarEl.classList.add("has-image");
+      }
+    }
+
+    bodyEl.innerHTML = html;
 
     overlay.classList.add("open");
     canvas.classList.add("open");
@@ -2042,6 +2095,7 @@ Professor, Waseda University</div>
     closeBtn.focus();
     document.body.style.overflow = "hidden";
   }
+
 
   function closeCanvas(){
     canvas.classList.remove("open");
@@ -2065,11 +2119,11 @@ Professor, Waseda University</div>
   }
 
   document.querySelectorAll('#speakers .speaker-card[data-speaker]').forEach(card => {
-    card.addEventListener("click", () => openCanvas(card.getAttribute("data-speaker")));
+    card.addEventListener("click", () => openCanvas(card.getAttribute("data-speaker"), card));
     card.addEventListener("keydown", (e) => {
       if(e.key === "Enter" || e.key === " ") {
         e.preventDefault();
-        openCanvas(card.getAttribute("data-speaker"));
+        openCanvas(card.getAttribute("data-speaker"), card);
       }
     });
   });
