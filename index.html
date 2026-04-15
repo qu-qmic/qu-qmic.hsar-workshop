@@ -1319,6 +1319,9 @@ html { scroll-behavior: smooth; }
 
 
 /* Make speaker cards feel clickable */
+@media (min-width: 981px){
+  #speakers .speaker-card{ grid-column: span 3; }
+}
 #speakers .speaker-card{ cursor: pointer; }
   #organizers .speaker-card{ cursor: pointer; }
 #speakers .speaker-card:focus-within,
@@ -1569,14 +1572,6 @@ html { scroll-behavior: smooth; }
 </div>
 </div>
 <div aria-label="Speaker cards" class="speaker-grid">
-<article aria-label="Open bio for Tetsuya Ogata" class="speaker-card" data-speaker="Tetsuya Ogata" role="button" tabindex="0">
-<div aria-label="Speaker photo placeholder" class="speaker-photo" role="img"><img alt="TetsuyaOgata" src="assets/images/ogataSquarecrop.jpg"/></div>
-<div class="speaker-meta">
-<div class="speaker-name">Tetsuya Ogata</div>
-<div class="speaker-affil">Chairman, AI Robot Association<br/>
-Professor, Waseda University</div>
-</div>
-</article>
 <article aria-label="Open bio for Gentiane Venture" class="speaker-card" data-speaker="Gentiane Venture" role="button" tabindex="0">
 <div aria-label="Speaker photo placeholder" class="speaker-photo" role="img"><img alt="GentianeVenture" src="assets/images/GentianeVenture.jpg"/></div>
 <div class="speaker-meta">
@@ -1598,7 +1593,15 @@ Professor, Waseda University</div>
 <div class="speaker-affil">Full Professor in Computer Science at Università degli Studi di Napoli Federico</div>
 </div>
 </article>
+<article aria-label="Open bio for Tetsuya Ogata" class="speaker-card" data-speaker="Tetsuya Ogata" role="button" tabindex="0">
+<div aria-label="Speaker photo placeholder" class="speaker-photo" role="img"><img alt="TetsuyaOgata" src="assets/images/ogataSquarecrop.jpg"/></div>
+<div class="speaker-meta">
+<div class="speaker-name">Tetsuya Ogata</div>
+<div class="speaker-affil">Chairman, AI Robot Association<br/>
+Professor, Waseda University</div>
 </div>
+</article>
+</div></div>
 <p class="note" style="margin-top:12px;">
 </p>
 </section>
@@ -1692,7 +1695,7 @@ Professor, Waseda University</div>
 <article aria-label="Open bio for Xiaoxuan HEI" class="speaker-card" data-speaker="Xiaoxuan HEI" role="button" tabindex="0">
 <div aria-label="Organizer photo placeholder" class="speaker-photo" role="img"><img alt="HEI" src="assets/images/HEI.jpg"/></div>
 <div class="speaker-meta">
-<div class="speaker-name">Xiaoxuan HEI</div>
+<div class="speaker-name">Xiaoxuan Hei</div>
 <div class="speaker-affil">ENSTA, Institut Polytechnique de Paris </div>
 </div>
 </article>
@@ -1815,7 +1818,7 @@ Professor, Waseda University</div>
 <div aria-label="Workshop email" class="email-card">
 <h3 class="card-title">Email</h3>
 <p class="muted" style="margin:0 0 10px;">For inquiries about the workshop, please contact the organizing committee at:</p>
-<p class="email-link"><a href="mailto:alsada@qmic.com">workshop@qmic.com</a></p>
+<p class="email-link"><a href="mailto:workshop@qmic.com">workshop@qmic.com</a></p>
 </div>
 </section>
 </main>
@@ -1832,11 +1835,11 @@ Professor, Waseda University</div>
 <div style="display:flex; align-items:center; gap:10px;">
 <div aria-hidden="true" class="brand-badge" style="width:34px;height:34px;border-radius:12px;"></div>
 <div>
-<div style="font-weight:1000;">ROMAN 2026</div>
+<div style="font-weight:1000;">H-STAR</div>
 </div>
 </div>
 <div class="foot-note">
-            © <span id="year"></span> ·ROMAN 2026
+            © <span id="year"></span> · H-STAR
           </div>
 </div>
 <div class="backtop">
@@ -2075,8 +2078,6 @@ Professor, Waseda University</div>
     ]
   },
   "Nihan Karatas": {
-    "address": "Furo-cho, Chikusa-ku, Nagoya, Aichi, 464-8601, Japan",
-    "phone": "+81-52-789-5586",
     "email": "karatas.nihan.r8@f.mail.nagoya-u.ac.jp",
     "bio": [
       "Nihan Karatas is a Designated Assistant Professor in the HMI and Human Characteristics Research Division at the Institutes of Innovation for Future Society, Nagoya University, Japan.",
@@ -2084,8 +2085,6 @@ Professor, Waseda University</div>
     ]
   },
   "Neziha Akalin": {
-    "address": "Gjuterigatan 5, 551 11 Jönköping, Sweden",
-    "phone": "+4636101367",
     "email": "neziha.akalin@ju.se",
     "website": "https://ju.se/en/personinfo?sign=AKANEZ&lang=en",
     "bio": [
@@ -2094,8 +2093,6 @@ Professor, Waseda University</div>
     ]
   },
   "Faisal Al Jaber": {
-    "address": "Al-Jamiaa Street, Qatar University, Doha, Qatar.",
-    "phone": "+974 44592700",
     "email": "f.aljaber@qu.edu.qa",
     "website": "https://qmic.com",
     "bio": [
@@ -2105,8 +2102,6 @@ Professor, Waseda University</div>
     ]
   },
   "Mohammed Al Sada": {
-    "address": "Qatar Mobility Innovation Center, QSTP, Doha, Qatar",
-    "phone": "+974-55897177",
     "email": "Mohammed.alsada@qu.edu.qa",
     "website": "https://alsada.io",
     "bio": [
@@ -2116,8 +2111,6 @@ Professor, Waseda University</div>
     ]
   },
   "Tamon Miyake": {
-    "address": "513, Wasedatsurumakicho, Shinjuku-ku, Tokyo, 162-0041, JAPAN.",
-    "phone": "+81352868219",
     "email": "tamonmiyake@aoni.waseda.jp",
     "website": "https://sites.google.com/view/tamonmiyakehomepage/",
     "bio": [
@@ -2127,7 +2120,6 @@ Professor, Waseda University</div>
     ]
   },
   "Adriana Tapus": {
-    "phone": "+33181872044",
     "email": "adriana.tapus@ensta.fr",
     "website": "https://perso.ensta-paris.fr/~tapus/eng/index.html",
     "bio": [
@@ -2138,7 +2130,6 @@ Professor, Waseda University</div>
     ]
   },
   "Shogo Okada": {
-    "phone": "+81761511205",
     "email": "okada-s@jaist.ac.jp",
     "website": "https://www.jaist.ac.jp/english/laboratory/his/okada.html",
     "bio": [
@@ -2147,8 +2138,12 @@ Professor, Waseda University</div>
     ]
   },
   "Xiaoxuan HEI": {
+    "email": "xiaoxuan.hei@ensta.fr",
+    "website": "https://xiaoxuanhei.github.io/",
     "bio": [
-      "Bio will be added soon."
+      "Xiaoxuan Hei is a PhD student in the Autonomous Systems and Robotics Lab at ENSTA, France. She received her BSc degree from Huazhong University of Science and Technology (HUST), China and her MSc degree from Paris Saclay University, France.",
+      "Her research focuses on the application of robotics in education, particularly on detecting and estimating human engagement to enable adaptive robot behaviors. By analyzing how such adaptations influence learning outcomes and human perception of robots, she aims to enhance the effectiveness of robotic systems in educational settings.",
+      "She has published several papers at ICRA, IROS, HRI, RO-MAN, ICSR, etc."
     ]
   }
 };
