@@ -2,6 +2,7 @@
 
 <html lang="en">
 <head>
+  <!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-XDJF3B065J"></script> <script>   window.dataLayer = window.dataLayer || [];   function gtag(){dataLayer.push(arguments);}   gtag('js', new Date());   gtag('config', 'G-XDJF3B065J'); </script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta content="light" name="color-scheme"/>
@@ -887,11 +888,12 @@
     .sponsor-grid{
       display:grid;
       grid-template-columns: repeat(12, minmax(0, 1fr));
-      gap: 16px;
+      gap: 24px;
       margin-top: 16px;
     }
     .sponsor-card{
       grid-column: span 4;
+      width: 100%;
       border: 1px solid rgba(20,20,20,.08);
       border-radius: 20px;
       background: #fff;
@@ -899,8 +901,11 @@
       display:flex;
       align-items:center;
       gap: 14px;
-      min-height: 92px;
+      min-height: 150px;
       justify-content: center;
+    }
+    .sponsor-grid .sponsor-card:last-child{
+      grid-column: 5 / span 4;
     }
     .sponsor-logo{
       width: 140px;
@@ -921,10 +926,15 @@
       margin-top: 4px;
     }
     @media (max-width: 860px){
-      .sponsor-card{grid-column: span 12}
-      .sponsor-logo{width: 110px}
+      .sponsor-card{grid-column: span 6;}
+      .sponsor-grid .sponsor-card:last-child{grid-column: 4 / span 6;}
+      .sponsor-logo{width: 110px;}
     }
-    
+    @media (max-width: 560px){
+      .sponsor-card,
+      .sponsor-grid .sponsor-card:last-child{grid-column: 1 / -1;}
+    }
+   
     /* Contact + Map */
     .contact-grid{
       display:grid;
@@ -1432,7 +1442,7 @@ html { scroll-behavior: smooth; }
 </div>
 <div class="drawer-body">
 <div class="pill" style="margin:6px 4px 10px;">
-<span aria-hidden="true" class="pill-dot"></span>
+
 <span>Primary: #D42321 · Secondary: #99BB1F</span>
 </div>
 <ul class="drawer-nav" id="drawerNav">
@@ -1444,10 +1454,7 @@ html { scroll-behavior: smooth; }
 <li><a href="#organizers">Organizers</a></li>
 <li><a href="#audience">Audience</a></li><li><a href="#contact">Contact</a></li>
 </ul>
-<div class="drawer-actions">
-<a class="btn btn-primary" href="#cfp">Submit / Register</a>
-<a class="btn btn-ghost" href="#contact">Ask a Question</a>
-</div>
+
 </div>
 </aside>
 <!-- Hero -->
@@ -1518,10 +1525,9 @@ html { scroll-behavior: smooth; }
       </p>
 <ul class="list">
 <li>
-<b>Submission format:</b>
-          Either <b>extended abstracts (2–4 pages, excluding references)</b>
-          or <b>full papers (6 pages, excluding references)</b>,
-          using the <b>IEEE paper format</b>.
+<b>Submission format: </b>
+<b>extended abstracts (2-4 pages, excluding references).</b>
+
         </li>
 <li>
 <b>Templates:</b>
@@ -1642,10 +1648,7 @@ html { scroll-behavior: smooth; }
 <div aria-label="Speaker photo placeholder" class="speaker-photo" role="img"><img alt="KristiinaJokinen" src="assets/images/KristiinaJokinen.jpg"/></div>
 <div class="speaker-meta">
 <div class="speaker-name">Kristiina Jokinen</div>
-<div class="speaker-affil">Adjunct Professor, University of Helsinki, Finland 
-Member of the CNRS-AIST Joint Research Lab, Tsukuba, Japan 
-
-Visiting Professor, Institute of Science Tokyo, Japan </div>
+<div class="speaker-affil">AIRC AIST Tokyo Waterfront; University of Helsinki and University of Tartu</div>
 </div>
 </article>
 <article aria-label="Open bio for Silvia Rossi" class="speaker-card" data-speaker="Silvia Rossi" role="button" tabindex="0">
@@ -1849,10 +1852,12 @@ Professor, Waseda University</div>
 <p class="section-subtitle">This workshop is sponsored by :</p>
 </div>
 </div>
+
 <div aria-label="Sponsor logos" class="sponsor-grid" role="list">
-<div class="sponsor-card" role="listitem">
-<img alt="QMIC logo" class="sponsor-logo" src="assets/images/qmic-logo.svg"/>
-</div>
+  <div class="sponsor-card" role="listitem">
+    <img alt="Waseda logo" class="sponsor-logo" src="assets/images/waseda-logo.png" style="width:200px"/>
+    </div>
+
 <div class="sponsor-card" role="listitem">
 <img alt="KINDI logo" class="sponsor-logo" src="assets/images/kindi-logo.png"/>
 </div>
@@ -1868,6 +1873,9 @@ Professor, Waseda University</div>
 <div class="sponsor-card" role="listitem">
 <img alt="Nagoya logo" class="sponsor-logo" src="assets/images/logo-nagoya-university.png" style="width:225px"/>
 </div>
+<div class="sponsor-card card-center" role="listitem">
+  <img alt="QMIC logo" class="sponsor-logo " src="assets/images/qmic-logo.svg"/>
+  </div>
 </div>
 </section>
 <section aria-label="Contact" id="contact">
