@@ -1432,6 +1432,168 @@ html { scroll-behavior: smooth; }
   }
 }
 
+
+    .talk-title{
+      display:inline-block;
+      margin-top:4px;
+      color:var(--muted);
+      font-weight:700;
+      line-height:1.45;
+    }
+
+
+/* Program cards: light layout consistent with the website theme */
+.program-cards{
+  display:grid;
+  gap:14px;
+}
+.program-card-item{
+  display:grid;
+  grid-template-columns: 110px 1fr;
+  gap:16px;
+  align-items:center;
+  background:#fff;
+  border:1px solid rgba(20,20,20,.08);
+  border-radius:22px;
+  box-shadow:var(--shadow);
+  padding:16px;
+  min-width:0;
+}
+.program-card-item.program-talk{
+  grid-template-columns: 150px 1fr;
+}
+.program-photo{
+  width:150px;
+  height:118px;
+  border-radius:18px;
+  overflow:hidden;
+  background:linear-gradient(135deg, rgba(0,122,190,.08), rgba(6,152,154,.08));
+  border:1px solid rgba(20,20,20,.08);
+}
+.program-photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.program-time{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:48px;
+  padding:10px 14px;
+  border-radius:999px;
+  background:rgba(0,122,190,.10);
+  border:1px solid rgba(0,122,190,.16);
+  color:var(--primary);
+  font-weight:1000;
+  width:fit-content;
+}
+.program-content{min-width:0;}
+.program-label,
+.program-meta{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex-wrap:wrap;
+  color:var(--muted);
+  font-size:13px;
+  font-weight:900;
+  margin-bottom:6px;
+}
+.program-time-badge{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(0,122,190,.10);
+  color:var(--primary);
+  border:1px solid rgba(0,122,190,.16);
+  font-weight:1000;
+}
+.program-card-item h3{
+  margin:0;
+  font-size:clamp(16px, 1.8vw, 22px);
+  line-height:1.35;
+  letter-spacing:-.02em;
+}
+.program-card-item p{
+  margin:8px 0 0;
+  color:rgba(20,20,20,.66);
+  font-size:14px;
+}
+@media (max-width: 720px){
+  .program-card-item,
+  .program-card-item.program-talk{
+    grid-template-columns:1fr;
+  }
+  .program-photo{
+    width:100%;
+    height:auto;
+    aspect-ratio: 16 / 9;
+  }
+  .program-time{
+    min-height:auto;
+  }
+}
+
+
+/* Program compact spacing update */
+.program-cards{
+  gap:10px !important;
+}
+.program-card-item{
+  padding:12px 14px !important;
+  gap:14px !important;
+  grid-template-columns: 82px 1fr !important;
+  border-radius:18px !important;
+}
+.program-card-item.program-talk{
+  grid-template-columns: 120px 1fr !important;
+}
+.program-photo{
+  width:120px !important;
+  height:88px !important;
+  border-radius:14px !important;
+}
+.program-time{
+  min-height:38px !important;
+  padding:7px 12px !important;
+  font-size:16px !important;
+}
+.program-label,
+.program-meta{
+  margin-bottom:3px !important;
+  font-size:12px !important;
+}
+.program-time-badge{
+  padding:4px 9px !important;
+  font-size:12px !important;
+}
+.program-card-item h3{
+  font-size:clamp(15px, 1.45vw, 19px) !important;
+  line-height:1.25 !important;
+}
+.program-card-item p{
+  margin-top:5px !important;
+  font-size:13px !important;
+}
+@media (max-width: 720px){
+  .program-card-item,
+  .program-card-item.program-talk{
+    grid-template-columns:1fr !important;
+  }
+  .program-card-item{
+    padding:12px !important;
+  }
+  .program-photo{
+    width:100% !important;
+    height:auto !important;
+    aspect-ratio: 16 / 7 !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1688,9 +1850,7 @@ html { scroll-behavior: smooth; }
 <div aria-label="Speaker photo placeholder" class="speaker-photo" role="img"><img alt="KristiinaJokinen" src="assets/images/KristiinaJokinen.jpg"/></div>
 <div class="speaker-meta">
 <div class="speaker-name">Kristiina Jokinen</div>
-<div class="speaker-affil">Adjunct Professor, University of Helsinki, Finland 
-Member of the CNRS-AIST Joint Research Lab, Tsukuba, Japan 
-Visiting Professor, Institute of Science Tokyo, Japan </div>
+<div class="speaker-affil">University of Helsinki<br/>CNRS-AIST Joint Robotics Lab<br/>Institute of Science Tokyo</div>
 </div>
 </article>
 <article aria-label="Open bio for Silvia Rossi" class="speaker-card" data-speaker="Silvia Rossi" role="button" tabindex="0">
@@ -1717,73 +1877,118 @@ Professor, Waseda University</div>
 <div class="section-head">
 <h2>Workshop Program</h2>
 </div>
-<div class="program-wrap">
-<div class="card program-card">
-<div class="card-body">
-<div aria-label="Scrollable program table wrapper" class="table-scroll">
-<table aria-label="Workshop Program" class="program-table">
-<thead>
-<tr>
-<th>Time</th>
-<th>Activity</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>8:45</td>
-<td>Welcome and Introduction</td>
-</tr>
-<tr>
-<td>9:00</td>
-<td>
-        Invited Talk 1 — <strong>Prof. Tetsuya Ogata</strong>
-</td>
-</tr>
-<tr>
-<td>9:20</td>
-<td>
-        Invited Talk 2 — <strong>Prof. Gentiane Venture</strong>
-</td>
-</tr>
-<tr>
-<td>9:40</td>
-<td>Breakout Group Discussion</td>
-</tr>
-<tr>
-<td>10:00</td>
-<td>Coffee Break + Posters + Lightning Talk Videos</td>
-</tr>
-<tr>
-<td>10:20</td>
-<td>
-        Invited Talk 3 — <strong>Prof. Kristiina Jokinen</strong>
-</td>
-</tr>
-<tr>
-<td>10:40</td>
-<td>Invited Talk 4 — <strong>Prof. Silvia Rossi</strong></td>
-</tr>
-<tr>
-<td>11:00</td>
-<td>Breakout Group Discussion</td>
-</tr>
-<tr>
-<td>11:20</td>
-<td>Coffee Break + Posters + Lightning Talk Videos</td>
-</tr>
-<tr>
-<td>11:40</td>
-<td>Panel Discussion &amp; Lessons-Learned Report</td>
-</tr>
-<tr>
-<td>12:10</td>
-<td>Closing</td>
-</tr>
-</tbody>
-</table>
+<div class="program-cards" aria-label="Workshop Program">
+<article class="program-card-item">
+<div class="program-time">8:45</div>
+<div class="program-content">
+<div class="program-label">Opening</div>
+<h3>Welcome and Introduction</h3>
 </div>
+</article>
+
+<article class="program-card-item program-talk">
+<div class="program-photo">
+<img alt="Tetsuya Ogata" src="assets/images/ogataSquarecrop.jpg"/>
 </div>
+<div class="program-content">
+<div class="program-meta">
+<span class="program-time-badge">9:00</span>
+<span>Invited Talk 1</span>
 </div>
+<h3>Beyond Affinity: Human-Robot Interaction in the Age of Physical AI</h3>
+<p><strong>Prof. Tetsuya Ogata</strong></p>
+</div>
+</article>
+
+<article class="program-card-item program-talk">
+<div class="program-photo">
+<img alt="Gentiane Venture" src="assets/images/GentianeVenture.jpg"/>
+</div>
+<div class="program-content">
+<div class="program-meta">
+<span class="program-time-badge">9:20</span>
+<span>Invited Talk 2</span>
+</div>
+<h3>Prof. Gentiane Venture</h3>
+<p><strong>Professor of robotics, the University of Tokyo</strong></p>
+</div>
+</article>
+
+<article class="program-card-item">
+<div class="program-time">9:40</div>
+<div class="program-content">
+<div class="program-label">Discussion</div>
+<h3>Breakout Group Discussion</h3>
+</div>
+</article>
+
+<article class="program-card-item">
+<div class="program-time">10:00</div>
+<div class="program-content">
+<div class="program-label">Break</div>
+<h3>Coffee Break + Posters + Lightning Talk Videos</h3>
+</div>
+</article>
+
+<article class="program-card-item program-talk">
+<div class="program-photo">
+<img alt="Kristiina Jokinen" src="assets/images/KristiinaJokinen.jpg"/>
+</div>
+<div class="program-content">
+<div class="program-meta">
+<span class="program-time-badge">10:20</span>
+<span>Invited Talk 3</span>
+</div>
+<h3>Interaction Space and Conversational Foundations: Grounding, Multimodality and Collaboration with Robot Agents</h3>
+<p><strong>Prof. Kristiina Jokinen</strong></p>
+</div>
+</article>
+
+<article class="program-card-item program-talk">
+<div class="program-photo">
+<img alt="Silvia Rossi" src="assets/images/SilviaRossi.jpg"/>
+</div>
+<div class="program-content">
+<div class="program-meta">
+<span class="program-time-badge">10:40</span>
+<span>Invited Talk 4</span>
+</div>
+<h3>Understanding and Being Understood: Cognitive Robotics Challenges from an HRI Point of View</h3>
+<p><strong>Prof. Silvia Rossi</strong></p>
+</div>
+</article>
+
+<article class="program-card-item">
+<div class="program-time">11:00</div>
+<div class="program-content">
+<div class="program-label">Discussion</div>
+<h3>Breakout Group Discussion</h3>
+</div>
+</article>
+
+<article class="program-card-item">
+<div class="program-time">11:20</div>
+<div class="program-content">
+<div class="program-label">Break</div>
+<h3>Coffee Break + Posters + Lightning Talk Videos</h3>
+</div>
+</article>
+
+<article class="program-card-item">
+<div class="program-time">11:40</div>
+<div class="program-content">
+<div class="program-label">Panel</div>
+<h3>Panel Discussion &amp; Lessons-Learned Report</h3>
+</div>
+</article>
+
+<article class="program-card-item">
+<div class="program-time">12:10</div>
+<div class="program-content">
+<div class="program-label">Closing</div>
+<h3>Closing</h3>
+</div>
+</article>
 </div>
 </section>
 <!-- Organizers -->
@@ -2174,9 +2379,11 @@ Professor, Waseda University</div>
 (function(){
   const profiles = {
   "Kristiina Jokinen": {
+    "talkTitle": "Interaction Space and Conversational Foundations: Grounding, Multimodality and Collaboration with Robot Agents",
+    "abstract": "In this talk I will explore Interaction Space in human–robot interaction and try to answer such questions as why social robots often speak too much, listen too little, and struggle to align with human expectations. I will discuss foundations of natural language communication and challenge traditional views that rely on static structures to guide interpretation of goals, intentions, and beliefs. Starting from situational awareness, the talk will progress by examining co-creation of conversations and long-term engagement, and, with the help of knowledge graphs, emphasise the process of grounding (conversational, perceptual, knowledge) in the construction of shared understanding. Finally, the talk will address challenges for designing next-generation conversational robots that support collaboration, and are based on responsible design principles.",
     "bio": [
-      "Kristiina Jokinen is Senior Researcher at AIRC (Artificial Intelligence Research Center), AIST Tokyo Waterfront, Japan. After her PhD from UMIST, Manchester she was JSPS Research Fellow at NAIST in Japan and an Invited Researcher at ATR Research Labs in Kyoto. She was Nokia Foundation Fellow at Stanford University in 2006, NICT Visiting Professor at Doshisha University in 2009-10, and is a Life Member of Clare Hall at University of Cambridge. Before joining AIRC, she was Professor and Project Manager at University of Helsinki and at University of Tartu.",
-      "Her research focuses on spoken dialogue systems, multimodal communication (speech, gaze, gesturing), and human-robot interaction. She led the development of WikiTalk, a Wikipedia-based talking robot information system, and has been Principal Investigator in multiple international projects. She has published four books, and organised several international workshops including the northernmost spoken dialogue conference IWSDS 2016 in Lapland."
+      "Kristiina Jokinen joined CNRS-AIST Joint Robotics Lab in 2026, after eight years at AIST AI Research Center (AIRC) in Tokyo Waterfront. She is Adjunct Professor at University of Helsinki, Visiting Professor at Institute of Science Tokyo, and Life Member of Clare Hall at University of Cambridge.",
+      "Her research concerns HRI and multimodal dialogue systems (speech, gaze, gestures). She developed Constructive Dialogue Model as a general framework for interaction, and has published widely on these topics. She has led numerous national and international research projects, and most recently, she directed dialogue research in the EU-Japan collaboration project e-VITA at AIST AIRC. For many years, she served as a board member and Secretary-Treasurer for ACL-ISCA Special Interest Group for Discourse and Dialogue (SIGDial). Together with Graham Wilcock she developed WikiTalk, a Wikipedia-based robot dialogue system which won Best Robot Design award (Software Category) at ICSR 2017."
     ]
   },
   "Gentiane Venture": {
@@ -2185,12 +2392,16 @@ Professor, Waseda University</div>
     ]
   },
   "Tetsuya Ogata": {
+    "talkTitle": "Beyond Affinity: Human-Robot Interaction in the Age of Physical AI",
+    "abstract": "Conventionally, HRI research has leaned toward psychology, evaluating user acceptance within the limits of early robotic capabilities. The emergence of Physical AI disrupts this paradigm: robots are no longer just passive companions but active agents capable of shaping the physical environment, profoundly altering human-robot dynamics. This talk discusses the evolving landscape of HRI in this new era. By showcasing cutting-edge case studies—ranging from task-oriented dialogue in physical environments to interactions based on direct physical contact—we will examine where the field of HRI is headed next.",
     "bio": [
       "Tetsuya Ogata, Ph.D. (Engineering) is a distinguished professor in the Department of Intermedia Art and Science at Waseda University’s School of Fundamental Science and Engineering in Tokyo, Japan, where he also serves as Director of the Institute for AI and Robotics. He is a Joint-Appointed Fellow at the Artificial Intelligence Research Center of the National Institute of Advanced Industrial Science and Technology (AIST), a Visiting Professor at the Research and Development Center for Large Language Models at the National Institute of Informatics (NII), and Research Supervisor for the JST CREST “Embodied AI Systems” program. Ogata is also Chairperson of the AI Robot Association (AIRoA).",
       "His research focuses on cognitive robotics, deep predictive learning, and intelligent robotic systems, exploring mechanisms for human-like interaction and learning in robots. Over his career he has held positions at Kyoto University, RIKEN, and JST PRESTO, and he has been recognized with numerous awards, including the 2023 MEXT Award for Science and Technology for his contributions to robotics."
     ]
   },
   "Silvia Rossi": {
+    "talkTitle": "Understanding and Being Understood: Cognitive Robotics Challenges from an HRI Point of View",
+    "abstract": "Meaningful human–robot interaction depends on a two-way process of understanding. Robots must perceive and interpret human goals, emotions, and intentions in ways that are sensitive to individual differences and situational context - an ability that parallels aspects of the Theory of Mind in humans. Such context-aware perception depends on the integration of multimodal sensing, adaptive inference, and representations of social and environmental context - capabilities that remain at the frontier of cognitive robotics. By tailoring their internal models and responses to who people are, what they are doing, and how they are feeling, robots can enable more fluid, trustworthy, and personalized interactions. However, understanding must be reciprocal. Humans also need to make sense of robot actions, anticipate their behavior, and feel confident in the robot’s competence and intentions. Designing robot behaviors that are legible, predictable, and contextually appropriate is therefore equally essential. This demands an understanding of how humans form mental models of artificial agents, attribute agency and emotion, and anticipate behavior - core topics that bridge robotics and cognitive science. This talk will explore these two complementary dimensions - personalized, context-aware human modeling and socially interpretable robot behavior - as foundations for cognitive systems that can both understand and be understood. The discussion will highlight current research challenges, emerging methodologies, and the implications of mutual understanding for the design of safe, adaptive, and socially integrated robotic agents.",
     "bio": [
       "Silvia Rossi, Ph.D. is a Full Professor of Computer Science in the Department of Electrical Engineering and Information Technologies at the University of Naples “Federico II” in Italy and the Scientific Director of the PRISCA Lab (Projects of Intelligent Robotics and Advanced Cognitive Systems). She received her M.Sc. in Physics from the University of Naples “Federico II” in 2001 and her Ph.D. in Information and Communication Technologies from the University of Trento in 2006.",
       "Prof. Rossi leads and coordinates numerous European and national research projects focused on Socially Assistive Robotics, Human-Robot Interaction, Cognitive Architectures, adaptive autonomous systems, and user profiling, with the goal of creating robots that can effectively interact with and support people. She has chaired major international conferences in robotics and artificial intelligence, including IEEE RO-MAN, and serves on program committees for leading conferences in the field.",
@@ -2384,14 +2595,32 @@ Professor, Waseda University</div>
   }
 
   function buildBio(profile){
+    const parts = [];
+
+    if(profile.talkTitle){
+      parts.push(`
+        <div class="oc-section-title">Talk Title</div>
+        <p><strong>${escapeHtml(profile.talkTitle)}</strong></p>
+      `);
+    }
+
+    if(profile.abstract){
+      parts.push(`
+        <div class="oc-section-title">Abstract</div>
+        <p>${escapeHtml(profile.abstract)}</p>
+      `);
+    }
+
     const bio = profile.bio;
     if(Array.isArray(bio) && bio.length){
-      return bio.map(p => `<p>${escapeHtml(p)}</p>`).join("");
+      parts.push(`<div class="oc-section-title">Bio</div>`);
+      parts.push(bio.map(p => `<p>${escapeHtml(p)}</p>`).join(""));
+    } else if(typeof bio === "string" && bio.trim()){
+      parts.push(`<div class="oc-section-title">Bio</div>`);
+      parts.push(`<p>${escapeHtml(bio)}</p>`);
     }
-    if(typeof bio === "string" && bio.trim()){
-      return `<p>${escapeHtml(bio)}</p>`;
-    }
-    return `<p>Bio will be added soon.</p>`;
+
+    return parts.join("") || `<p>Bio will be added soon.</p>`;
   }
 
   function showToast(msg){
