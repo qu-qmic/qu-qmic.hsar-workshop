@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -1016,20 +1017,19 @@
       padding: 0;
       margin-top: 28px;
       margin-bottom: 0;
+      width: 100%;
+      max-width: 100%;
     }
     .map-fullbleed-inner{
-      width: 100vw;
-      position: relative;
-      left: 50%;
-      right: 50%;
-      margin-left: -50vw;
-      margin-right: -50vw;
+      width: 100%;
+      max-width: 100%;
       border-top: 1px solid rgba(20,20,20,.08);
       border-bottom: 1px solid rgba(20,20,20,.08);
       background: #fff;
     }
     .map-fullbleed-inner iframe{
       width: 100%;
+      max-width: 100%;
       height: 420px;
       border: 0;
       display: block;
@@ -1546,7 +1546,7 @@ html { scroll-behavior: smooth; }
 .program-card-item{
   padding:12px 14px !important;
   gap:14px !important;
-  grid-template-columns: 82px 1fr !important;
+  grid-template-columns:132px 1fr !important;
   border-radius:18px !important;
 }
 .program-card-item.program-talk{
@@ -1561,6 +1561,7 @@ html { scroll-behavior: smooth; }
   min-height:38px !important;
   padding:7px 12px !important;
   font-size:16px !important;
+  white-space:nowrap;
 }
 .program-label,
 .program-meta{
@@ -1579,7 +1580,162 @@ html { scroll-behavior: smooth; }
   margin-top:5px !important;
   font-size:13px !important;
 }
+.program-card-item.program-expandable{
+  display:block;
+  padding:0 !important;
+  overflow:hidden;
+}
+.program-card-summary{
+  width:100%;
+  display:grid;
+  grid-template-columns:120px minmax(0,1fr) auto;
+  gap:14px;
+  align-items:center;
+  padding:12px 14px;
+  border:0;
+  background:transparent;
+  color:inherit;
+  font:inherit;
+  text-align:left;
+  cursor:pointer;
+}
+.program-card-summary:hover{
+  background:rgba(0,122,190,.035);
+}
+.program-card-summary:focus-visible{
+  outline:none;
+  box-shadow:var(--focus);
+}
+.program-card-summary .program-content{
+  display:block;
+  min-width:0;
+}
+.program-card-summary .program-talk-title{
+  display:block;
+  font-size:clamp(15px, 1.45vw, 19px) !important;
+  font-weight:1000;
+  line-height:1.25;
+  letter-spacing:-.02em;
+}
+.program-card-summary .program-speaker{
+  display:block;
+  margin-top:5px;
+  color:rgba(20,20,20,.66);
+  font-size:13px;
+}
+.program-card-summary .program-expand-label{
+  display:inline-flex;
+  color:var(--primary);
+  font-size:12px;
+  font-weight:900;
+}
+.program-expand-action{
+  display:inline-flex;
+  align-items:center;
+  justify-self:end;
+  gap:8px;
+  white-space:nowrap;
+}
+.program-card-summary .plus{
+  justify-self:end;
+}
+.program-participants .program-card-summary{
+  grid-template-columns:132px minmax(0,1fr) auto;
+}
+.program-card-panel{
+  display:grid;
+  grid-template-rows:0fr;
+  padding:0;
+  background:rgba(246,248,251,.55);
+  transition:grid-template-rows .28s cubic-bezier(.4, 0, .2, 1);
+}
+.program-card-panel.open{
+  display:grid;
+  grid-template-rows:1fr;
+}
+.program-card-panel-clip{
+  min-width:0;
+  min-height:0;
+  overflow:hidden;
+}
+.program-card-panel-content{
+  min-width:0;
+  padding:14px;
+  border-top:1px solid rgba(20,20,20,.08);
+}
+.program-panel-title{
+  margin:0 0 10px;
+  color:var(--primary);
+  font-size:16px;
+  font-weight:1000;
+  line-height:1.3;
+}
+.program-abstract-content p{
+  margin:0 0 10px !important;
+  line-height:1.6;
+}
+.program-abstract-content p:last-child{
+  margin-bottom:0 !important;
+}
+.participant-table{
+  min-width:720px;
+  box-shadow:none;
+  border-radius:14px;
+}
+.participant-table th:first-child{
+  width:56%;
+}
+.participant-table td{
+  vertical-align:top;
+  line-height:1.45;
+}
+.participant-title{
+  margin:0;
+  padding:0;
+  border:0;
+  background:transparent;
+  color:var(--primary);
+  font:inherit;
+  font-weight:900;
+  line-height:1.45;
+  text-align:left;
+  text-decoration:underline;
+  text-decoration-thickness:1px;
+  text-underline-offset:3px;
+  cursor:pointer;
+}
+.participant-title:hover{
+  color:var(--secondary);
+}
 @media (max-width: 720px){
+  .program-card-summary,
+  .program-participants .program-card-summary{
+    grid-template-columns:minmax(0,1fr) auto;
+  }
+  .program-talk .program-card-summary .program-photo{
+    grid-column:1 / -1;
+    grid-row:1;
+  }
+  .program-talk .program-card-summary .program-content{
+    grid-column:1;
+    grid-row:2;
+  }
+  .program-talk .program-card-summary .program-expand-action{
+    grid-column:2;
+    grid-row:2;
+  }
+  .program-participants .program-card-summary .program-time{
+    grid-column:1;
+    grid-row:1;
+  }
+  .program-participants .program-card-summary .program-content{
+    grid-column:1 / -1;
+    grid-row:2;
+  }
+  .program-participants .program-card-summary .plus{
+    grid-column:2;
+    grid-row:1;
+  }
   .program-card-item,
   .program-card-item.program-talk{
     grid-template-columns:1fr !important;
@@ -1715,7 +1871,7 @@ html { scroll-behavior: smooth; }
 <div>
 <h2>Call for Participation</h2>
 <p class="section-subtitle">
-        We welcome short papers, extended abstracts, and posters that advance human state-aware robotics for real-world HRI.
+        We welcome short papers, extended abstracts, and presentations that advance human state-aware robotics for real-world HRI.
       </p>
 </div>
 </div>
@@ -1749,13 +1905,13 @@ html { scroll-behavior: smooth; }
       </p>
 <div class="callout" style="margin-top:14px;">
 <p>
-<strong>Poster visibility:</strong>
-          Poster presenters prepare a 1-minute lightning talk video. Videos are promoted on social media,
+<strong>Presentation visibility:</strong>
+          Presenters prepare a 1-minute lightning talk video. Videos are promoted on social media,
           played during breaks, and linked on the workshop website.
         </p>
 </div>
 <p class="note" style="margin-top:10px;">
-<h3>🏆 The workshop will recognize outstanding poster presentations by awarding first, second, and third place prizes.</h3>
+<h3>🏆 The workshop will recognize outstanding presentations by awarding first, second, and third place prizes.</h3>
 </p>
 </div>
 </div>
@@ -1876,91 +2032,195 @@ Professor, Waseda University</div>
 <!-- Program -->
 <section id="program">
 <div class="section-head">
-<h2>Workshop Program <span style="font-size:.55em; color:var(--muted); font-weight:800;">(Tentative)</span></h2>
+<h2>Workshop Program <span style="font-size:.55em; color:var(--muted); font-weight:800;"></span></h2>
 </div>
 <div class="program-cards" aria-label="Workshop Program">
 <article class="program-card-item">
-<div class="program-time">14:00</div>
+<div class="program-time">14:00-14:10</div>
 <div class="program-content">
 <div class="program-label">Opening</div>
 <h3>Welcome and Introduction</h3>
 </div>
 </article>
 
-<article class="program-card-item program-talk">
-<div class="program-photo">
-<img alt="Tetsuya Ogata" src="assets/images/ogataSquarecrop.jpg"/>
-</div>
-<div class="program-content">
-<div class="program-meta">
-<span class="program-time-badge">14:15</span>
+<article class="program-card-item program-expandable program-talk">
+<button aria-controls="gentianeProgramAbstractPanel" aria-expanded="false" class="acc-btn program-card-summary" id="gentianeProgramAbstractButton" type="button">
+<span class="program-photo">
+<img alt="Gentiane Venture" src="assets/images/GentianeVenture.jpg">
+</span>
+<span class="program-content">
+<span class="program-meta">
+<span class="program-time-badge">14:10-14:40</span>
 <span>Invited Talk 1</span>
+</span>
+<span class="program-talk-title">Lessons learned from sophisticated robots in HRI in the wild</span>
+<span class="program-speaker"><strong>Prof. Gentiane Venture</strong></span>
+</span>
+<span class="program-expand-action">
+<span class="program-expand-label" data-collapsed-label="Show Abstract" data-expanded-label="Hide Abstract">Show Abstract</span>
+<span aria-hidden="true" class="plus">+</span>
+</span>
+</button>
+<div aria-hidden="true" aria-labelledby="gentianeProgramAbstractButton" class="acc-panel program-card-panel" id="gentianeProgramAbstractPanel" inert role="region">
+<div class="program-card-panel-clip">
+<div class="program-card-panel-content">
+<h4 class="program-panel-title">Talk Abstract</h4>
+<div class="program-abstract-content" data-program-abstract="Gentiane Venture"></div>
 </div>
-<h3>Beyond Affinity: Human-Robot Interaction in the Age of Physical AI</h3>
-<p><strong>Prof. Tetsuya Ogata</strong></p>
+</div>
 </div>
 </article>
 
-<article class="program-card-item program-talk">
-<div class="program-photo">
-<img alt="Gentiane Venture" src="assets/images/GentianeVenture.jpg"/>
-</div>
-<div class="program-content">
-<div class="program-meta">
-<span class="program-time-badge">14:35</span>
+<article class="program-card-item program-expandable program-talk">
+<button aria-controls="ogataProgramAbstractPanel" aria-expanded="false" class="acc-btn program-card-summary" id="ogataProgramAbstractButton" type="button">
+<span class="program-photo">
+<img alt="Tetsuya Ogata" src="assets/images/ogataSquarecrop.jpg">
+</span>
+<span class="program-content">
+<span class="program-meta">
+<span class="program-time-badge">14:40-15:10</span>
 <span>Invited Talk 2</span>
+</span>
+<span class="program-talk-title">Beyond Affinity: Human-Robot Interaction in the Age of Physical AI</span>
+<span class="program-speaker"><strong>Prof. Tetsuya Ogata</strong></span>
+</span>
+<span class="program-expand-action">
+<span class="program-expand-label" data-collapsed-label="Show Abstract" data-expanded-label="Hide Abstract">Show Abstract</span>
+<span aria-hidden="true" class="plus">+</span>
+</span>
+</button>
+<div aria-hidden="true" aria-labelledby="ogataProgramAbstractButton" class="acc-panel program-card-panel" id="ogataProgramAbstractPanel" inert role="region">
+<div class="program-card-panel-clip">
+<div class="program-card-panel-content">
+<h4 class="program-panel-title">Talk Abstract</h4>
+<div class="program-abstract-content" data-program-abstract="Tetsuya Ogata"></div>
 </div>
-<h3>Lessons learned from sophisticated robots in HRI in the wild</h3>
-<p><strong>Prof. Gentiane Venture</strong></p>
+</div>
+</div>
+</article>
+
+<article class="program-card-item program-expandable program-participants">
+<button aria-controls="participantPresentationsPanel" aria-expanded="false" class="acc-btn program-card-summary" id="participantPresentationsButton" type="button">
+<span class="program-time">15:10-16:00</span>
+<span class="program-content">
+<span class="program-talk-title">Participant Presentations</span>
+</span>
+<span aria-hidden="true" class="plus">+</span>
+</button>
+<div aria-hidden="true" aria-labelledby="participantPresentationsButton" class="acc-panel program-card-panel" id="participantPresentationsPanel" inert role="region">
+<div class="program-card-panel-clip">
+<div class="program-card-panel-content">
+<div class="table-scroll">
+<table class="program-table participant-table">
+<thead>
+<tr>
+<th scope="col">Paper Title</th>
+<th scope="col">Authors</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="participant-title" href="assets/papers/H-STAR2026_paper_3.pdf" rel="noopener" target="_blank">OAA: Three Phases of Vocal Guidance in Human-Drone Teleoperation</a></td>
+<td>Allan Henry; Christian Graff; Solange Rossato; José-Ernesto Gomez-Balderas; Sylvain Huet</td>
+</tr>
+<tr>
+<td><a class="participant-title" href="assets/papers/H-STAR2026_paper_4.pdf" rel="noopener" target="_blank">InteroSense: Earable Predictive Sensory Intelligence for Human State-Aware Robot Adaptation in Autism Support</a></td>
+<td>Maha M. A. Al-Obaidli; John-John Cabibihan</td>
+</tr>
+<tr>
+<td><a class="participant-title" href="assets/papers/H-STAR2026_paper_5.pdf" rel="noopener" target="_blank">Extended Abstract: Mapping Target-Centered Virtue Ethics onto POMDPs for Value-Transparent Autonomous Systems</a></td>
+<td>Marlow Fawn; Maike Schwammberger</td>
+</tr>
+<tr>
+<td><a class="participant-title" href="assets/papers/H-STAR2026_paper_6.pdf" rel="noopener" target="_blank">What Are We Measuring? Bonding, Trust, and the Evaluation of Human-Robot Relationships</a></td>
+<td>Imran Khan</td>
+</tr>
+<tr>
+<td><a class="participant-title" href="assets/papers/H-STAR2026_paper_7.pdf" rel="noopener" target="_blank">Enhancing Action Transparency of Robot Contact through Self-Referential Preparatory Demonstration in Humanoid Robots</a></td>
+<td>Chenyu Tai; Tamon Miyake; Yushi Wang; Misa Matsumura; Shigeki Sugano</td>
+</tr>
+<tr>
+<td><a class="participant-title" href="assets/papers/H-STAR2026_paper_8.pdf" rel="noopener" target="_blank">H.E.M.A.: A Multimodal Cognitive Architecture and Hybrid Episodic Memory Framework for Human State-Aware Adaptive Behavior</a></td>
+<td>Miguel Escudero-Jiménez; Eloy Retamino; Randy Gomez; Luis Merino</td>
+</tr>
+<tr>
+<td><a class="participant-title" href="assets/papers/H-STAR2026_paper_9.pdf" rel="noopener" target="_blank">Teaching Robots New Activities with a Sentence: On-Device Multimodal Action Recognition for Elderly-Centered HRI</a></td>
+<td>Youhan Li; Jinhua Xu; Antonio Sgorbissa; Carmine Recchiuto</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 </div>
 </article>
 
 <article class="program-card-item">
-<div class="program-time">14:55</div>
-<div class="program-content">
-<div class="program-label">Discussion</div>
-<h3>Breakout Group Discussion</h3>
-</div>
-</article>
-
-<article class="program-card-item program-talk">
-<div class="program-photo">
-<img alt="Kristiina Jokinen" src="assets/images/KristiinaJokinen.jpg"/>
-</div>
-<div class="program-content">
-<div class="program-meta">
-<span class="program-time-badge">15:15</span>
-<span>Invited Talk 3</span>
-</div>
-<h3>Interaction Space and Conversational Foundations: Grounding, Multimodality and Collaboration with Robot Agents</h3>
-<p><strong>Prof. Kristiina Jokinen</strong></p>
-</div>
-</article>
-
-<article class="program-card-item program-talk">
-<div class="program-photo">
-<img alt="Silvia Rossi" src="assets/images/SilviaRossi.jpg"/>
-</div>
-<div class="program-content">
-<div class="program-meta">
-<span class="program-time-badge">15:35</span>
-<span>Invited Talk 4</span>
-</div>
-<h3>Understanding and Being Understood: Cognitive Robotics Challenges from an HRI Point of View</h3>
-<p><strong>Prof. Silvia Rossi</strong></p>
-</div>
-</article>
-
-<article class="program-card-item">
-<div class="program-time">16:00</div>
+<div class="program-time">16:00-16:20</div>
 <div class="program-content">
 <div class="program-label">Break</div>
-<h3>Coffee Break + Posters + Lightning Talk Videos</h3>
+<h3>Coffee Break</h3>
+</div>
+</article>
+
+<article class="program-card-item program-expandable program-talk">
+<button aria-controls="kristiinaProgramAbstractPanel" aria-expanded="false" class="acc-btn program-card-summary" id="kristiinaProgramAbstractButton" type="button">
+<span class="program-photo">
+<img alt="Kristiina Jokinen" src="assets/images/KristiinaJokinen.jpg">
+</span>
+<span class="program-content">
+<span class="program-meta">
+<span class="program-time-badge">16:20-16:50</span>
+<span>Invited Talk 3</span>
+</span>
+<span class="program-talk-title">Interaction Space and Conversational Foundations: Grounding, Multimodality and Collaboration with Robot Agents</span>
+<span class="program-speaker"><strong>Prof. Kristiina Jokinen</strong></span>
+</span>
+<span class="program-expand-action">
+<span class="program-expand-label" data-collapsed-label="Show Abstract" data-expanded-label="Hide Abstract">Show Abstract</span>
+<span aria-hidden="true" class="plus">+</span>
+</span>
+</button>
+<div aria-hidden="true" aria-labelledby="kristiinaProgramAbstractButton" class="acc-panel program-card-panel" id="kristiinaProgramAbstractPanel" inert role="region">
+<div class="program-card-panel-clip">
+<div class="program-card-panel-content">
+<h4 class="program-panel-title">Talk Abstract</h4>
+<div class="program-abstract-content" data-program-abstract="Kristiina Jokinen"></div>
+</div>
+</div>
+</div>
+</article>
+
+<article class="program-card-item program-expandable program-talk">
+<button aria-controls="silviaProgramAbstractPanel" aria-expanded="false" class="acc-btn program-card-summary" id="silviaProgramAbstractButton" type="button">
+<span class="program-photo">
+<img alt="Silvia Rossi" src="assets/images/SilviaRossi.jpg">
+</span>
+<span class="program-content">
+<span class="program-meta">
+<span class="program-time-badge">16:50-17:20</span>
+<span>Invited Talk 4</span>
+</span>
+<span class="program-talk-title">Understanding and Being Understood: Cognitive Robotics Challenges from an HRI Point of View</span>
+<span class="program-speaker"><strong>Prof. Silvia Rossi</strong></span>
+</span>
+<span class="program-expand-action">
+<span class="program-expand-label" data-collapsed-label="Show Abstract" data-expanded-label="Hide Abstract">Show Abstract</span>
+<span aria-hidden="true" class="plus">+</span>
+</span>
+</button>
+<div aria-hidden="true" aria-labelledby="silviaProgramAbstractButton" class="acc-panel program-card-panel" id="silviaProgramAbstractPanel" inert role="region">
+<div class="program-card-panel-clip">
+<div class="program-card-panel-content">
+<h4 class="program-panel-title">Talk Abstract</h4>
+<div class="program-abstract-content" data-program-abstract="Silvia Rossi"></div>
+</div>
+</div>
 </div>
 </article>
 
 <article class="program-card-item">
-<div class="program-time">16:20</div>
+<div class="program-time">17:20-17:35</div>
 <div class="program-content">
 <div class="program-label">Discussion</div>
 <h3>Breakout Group Discussion</h3>
@@ -1968,7 +2228,7 @@ Professor, Waseda University</div>
 </article>
 
 <article class="program-card-item">
-<div class="program-time">16:40</div>
+<div class="program-time">17:35-17:55</div>
 <div class="program-content">
 <div class="program-label">Panel</div>
 <h3>Panel Discussion &amp; Lessons-Learned Report</h3>
@@ -1976,7 +2236,7 @@ Professor, Waseda University</div>
 </article>
 
 <article class="program-card-item">
-<div class="program-time">17:10</div>
+<div class="program-time">17:55-18:20</div>
 <div class="program-content">
 <div class="program-label">Closing</div>
 <h3>Closing</h3>
@@ -2211,28 +2471,47 @@ Professor, Waseda University</div>
     const panelA = document.getElementById("panelA");
     const panelB = document.getElementById("panelB");
 
-    function activateTab(which){
-      const isA = which === "A";
-      tabA.setAttribute("aria-selected", isA ? "true" : "false");
-      tabB.setAttribute("aria-selected", isA ? "false" : "true");
-      panelA.classList.toggle("active", isA);
-      panelB.classList.toggle("active", !isA);
-      if(isA){ tabA.focus(); } else { tabB.focus(); }
-    }
-    tabA.addEventListener("click", ()=> activateTab("A"));
-    tabB.addEventListener("click", ()=> activateTab("B"));
-    // keyboard tabs
-    [tabA, tabB].forEach((t)=>{
-      t.addEventListener("keydown", (e)=>{
-        if(e.key === "ArrowRight" || e.key === "ArrowLeft"){
-          activateTab(t.id === "tabA" ? "B" : "A");
-        }
+    if(tabA && tabB && panelA && panelB){
+      function activateTab(which){
+        const isA = which === "A";
+        tabA.setAttribute("aria-selected", isA ? "true" : "false");
+        tabB.setAttribute("aria-selected", isA ? "false" : "true");
+        panelA.classList.toggle("active", isA);
+        panelB.classList.toggle("active", !isA);
+        if(isA){ tabA.focus(); } else { tabB.focus(); }
+      }
+      tabA.addEventListener("click", ()=> activateTab("A"));
+      tabB.addEventListener("click", ()=> activateTab("B"));
+      // keyboard tabs
+      [tabA, tabB].forEach((t)=>{
+        t.addEventListener("keydown", (e)=>{
+          if(e.key === "ArrowRight" || e.key === "ArrowLeft"){
+            activateTab(t.id === "tabA" ? "B" : "A");
+          }
+        });
       });
-    });
+    }
 
     // Accordions (a11y) - single-open behavior
     const accButtons = [...document.querySelectorAll(".acc-btn")];
+    function updateAccordionLabel(button, expanded){
+      const label = button.querySelector("[data-collapsed-label][data-expanded-label]");
+      if(!label) return;
+      label.textContent = expanded
+        ? label.getAttribute("data-expanded-label")
+        : label.getAttribute("data-collapsed-label");
+    }
+    function updateAccordionPanel(panel, expanded){
+      if(!panel) return;
+      panel.classList.toggle("open", expanded);
+      panel.setAttribute("aria-hidden", expanded ? "false" : "true");
+      panel.toggleAttribute("inert", !expanded);
+    }
+
     accButtons.forEach((btn)=>{
+      const initialPanel = document.getElementById(btn.getAttribute("aria-controls"));
+      updateAccordionPanel(initialPanel, btn.getAttribute("aria-expanded") === "true");
+
       btn.addEventListener("click", ()=>{
         const panelId = btn.getAttribute("aria-controls");
         const panel = document.getElementById(panelId);
@@ -2243,12 +2522,14 @@ Professor, Waseda University</div>
           const pid = b.getAttribute("aria-controls");
           const p = document.getElementById(pid);
           b.setAttribute("aria-expanded","false");
-          if(p) p.classList.remove("open");
+          updateAccordionLabel(b, false);
+          updateAccordionPanel(p, false);
         });
 
         // open clicked if needed
         btn.setAttribute("aria-expanded", willOpen ? "true" : "false");
-        if(panel && willOpen) panel.classList.add("open");
+        updateAccordionLabel(btn, willOpen);
+        if(willOpen) updateAccordionPanel(panel, true);
       });
     });
 
@@ -2618,6 +2899,22 @@ Professor, Waseda University</div>
     return parts.join("") || `<p>Bio will be added soon.</p>`;
   }
 
+  function buildProgramAbstract(profile){
+    if(typeof profile.abstract === "string" && profile.abstract.trim()){
+      return profile.abstract
+        .trim()
+        .split(/\n\s*\n/)
+        .map(paragraph => "<p>" + escapeHtml(paragraph) + "</p>")
+        .join("");
+    }
+    return "<p>Abstract will be added soon.</p>";
+  }
+
+  document.querySelectorAll("[data-program-abstract]").forEach(panel => {
+    const key = panel.getAttribute("data-program-abstract");
+    panel.innerHTML = buildProgramAbstract(profiles[key] || {});
+  });
+
   function showToast(msg){
     const toast = document.getElementById("speakerBioToast");
     if(!toast) return;
@@ -2632,10 +2929,16 @@ Professor, Waseda University</div>
 
     const profile = profiles[key] || {};
 
-    // Try to read name/affiliation/photo from the clicked card
-    const card = triggerEl || document.querySelector('[data-speaker="' + key.replace(/"/g,'&quot;') + '"]');
-    const name = card?.querySelector(".speaker-name")?.textContent?.trim() || key;
-    const affilHTML = card?.querySelector(".speaker-affil")?.innerHTML?.trim() || "";
+    // Use the canonical speaker card as the drawer source.
+    const speakerCard = [...document.querySelectorAll(".speaker-card[data-speaker]")]
+      .find(card => card.getAttribute("data-speaker") === key);
+    const source = speakerCard || triggerEl;
+    const name = profile.displayName ||
+      source?.querySelector(".speaker-name")?.textContent?.trim() ||
+      key;
+    const affilHTML = profile.subtitle
+      ? escapeHtml(profile.subtitle)
+      : source?.querySelector(".speaker-affil")?.innerHTML?.trim() || "";
 
     // Header content
     if (nameEl) nameEl.textContent = name;
@@ -2644,10 +2947,10 @@ Professor, Waseda University</div>
       affilEl.style.display = affilHTML ? "" : "none";
     }
     if (avatarEl){
-      const imgSrc = card?.querySelector("img")?.getAttribute("src") || "";
+      const imgSrc = source?.querySelector("img")?.getAttribute("src") || "";
       avatarEl.classList.remove("has-image");
       avatarEl.style.backgroundImage = "";
-      avatarEl.setAttribute("data-initials", initialsFromName(name) || "•");
+      avatarEl.setAttribute("data-initials", profile.initials || initialsFromName(name) || "•");
       if (imgSrc){
         avatarEl.style.backgroundImage = 'url("' + imgSrc.replace(/"/g,'\\\"') + '")';
         avatarEl.classList.add("has-image");
@@ -2686,15 +2989,22 @@ Professor, Waseda University</div>
     }
   }
 
-  // Bind for both Speakers + Organizers (anything with data-speaker)
-  document.querySelectorAll('.speaker-card[data-speaker]').forEach(card => {
-    card.addEventListener("click", () => openCanvas(card.getAttribute("data-speaker"), card));
-    card.addEventListener("keydown", (e) => {
-      if(e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        openCanvas(card.getAttribute("data-speaker"), card);
-      }
-    });
+  // Bind speaker and organizer cards.
+  document.querySelectorAll("[data-speaker]").forEach(trigger => {
+    const key = trigger.getAttribute("data-speaker");
+    const isNativeControl = trigger.matches("button, a");
+
+    trigger.setAttribute("aria-haspopup", "dialog");
+    trigger.addEventListener("click", () => openCanvas(key, trigger));
+
+    if(!isNativeControl){
+      trigger.addEventListener("keydown", (e) => {
+        if(e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          openCanvas(key, trigger);
+        }
+      });
+    }
   });
 
   // Copy buttons inside the offcanvas
