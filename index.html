@@ -1803,7 +1803,7 @@ html { scroll-behavior: smooth; }
 .event-photo-button:hover img { transform: scale(1.025); }
 .event-photo-button:focus-visible { outline:3px solid var(--secondary); outline-offset:-3px; }
 .event-photo-enlarge { position:absolute; right:12px; bottom:12px; padding:6px 11px; background:rgba(0,29,85,.87); border-radius:999px; color:white; font-size:11px; font-weight:850; }
-.event-photo-tile figcaption, .award-photo figcaption { flex:1; padding:10px 13px 12px; font-size:12px; line-height:1.45; font-weight:650; color:var(--muted); }
+.event-photo-tile figcaption, .award-photo figcaption { flex:1; padding:14px 16px 16px; font-size:15px; line-height:1.5; font-weight:750; color:#24364f; }
 .photo-source-note { margin:14px 2px 0; color:var(--muted); font-size:12px; }
 .photo-source-note a { color:var(--primary); text-underline-offset:3px; }
 .award-section { padding-top:50px; }
@@ -1828,12 +1828,16 @@ html { scroll-behavior: smooth; }
 .hstar-lightbox::backdrop { background:rgba(0,8,24,.87); }
 .lightbox-window { position:relative; padding:20px 6px 6px; }
 .lightbox-close { position:absolute; right:0; top:-3px; border:0; background:rgba(255,255,255,.1); color:#fff; border-radius:10px; width:38px; height:38px; cursor:pointer; font-size:26px; z-index:3; }
-.lightbox-image-area { display:flex; align-items:center; justify-content:center; gap:10px; }
-.lightbox-image { object-fit:contain; width:min(100%,910px); max-height:calc(100vh - 170px); height:auto; }
-.lightbox-arrow { flex:0 0 38px; width:38px; height:46px; border:1px solid rgba(255,255,255,.18); border-radius:11px; color:#fff; background:rgba(255,255,255,.08); cursor:pointer; font-size:28px; }
-.lightbox-caption { color:rgba(255,255,255,.9); font-size:13px; text-align:center; margin:12px 0 5px; }
+.lightbox-image-area { position:relative; display:flex; align-items:center; justify-content:center; width:100%; }
+.lightbox-image { display:block; object-fit:contain; width:100%; max-width:910px; max-height:calc(100dvh - 185px); height:auto; border-radius:9px; }
+.lightbox-arrow { position:absolute; top:50%; transform:translateY(-50%); z-index:2; display:grid; place-items:center; width:46px; height:56px; border:1px solid rgba(255,255,255,.55); border-radius:14px; color:#fff; background:rgba(4,23,53,.88); cursor:pointer; font-size:32px; line-height:1; box-shadow:0 4px 14px rgba(0,0,0,.4); }
+.lightbox-prev { left:8px; }
+.lightbox-next { right:8px; }
+.lightbox-arrow[hidden] { display:none !important; }
+.lightbox-arrow:focus-visible { outline:3px solid #8ad3ff; outline-offset:2px; }
+.lightbox-caption { color:#fff; font-size:16px; font-weight:750; line-height:1.5; text-align:center; margin:18px 8px 10px; }
 @media (max-width:880px) { .event-photo-grid { grid-template-columns:1fr; } .event-photo-grid .event-photo-feature .event-photo-button { height:auto; aspect-ratio:16/10; } .event-photo-secondary { grid-template-columns:repeat(3,1fr); grid-template-rows:none; gap:11px; } .event-photo-secondary .event-photo-button { height:auto; aspect-ratio:4/3; } .award-panel { grid-template-columns:1fr; } .award-photo .event-photo-button { height:auto; aspect-ratio:16/9; } }
-@media (max-width:620px) { .hero-post-event { min-height:0; padding: 58px 0 60px; } .hero-post-event h1 { font-size:clamp(32px,9vw,48px); } .event-complete-tag { font-size:10px; } .hero-post-event .hero-thanks { font-size:14px; } .event-photo-secondary { grid-template-columns:1fr; } .event-photo-grid .event-photo-feature .event-photo-button, .event-photo-secondary .event-photo-button { aspect-ratio:16/10; height:auto; } .event-photo-tile, .award-photo { border-radius:17px; } .award-panel { border-radius:19px; } .hstar-closing { padding:60px 0; } .lightbox-arrow { flex:0 0 30px; width:30px; } }
+@media (max-width:620px) { .hero-post-event { min-height:0; padding: 58px 0 60px; } .hero-post-event h1 { font-size:clamp(32px,9vw,48px); } .event-complete-tag { font-size:10px; } .hero-post-event .hero-thanks { font-size:14px; } .event-photo-secondary { grid-template-columns:1fr; } .event-photo-grid .event-photo-feature .event-photo-button, .event-photo-secondary .event-photo-button { aspect-ratio:16/10; height:auto; } .event-photo-tile, .award-photo { border-radius:17px; } .award-panel { border-radius:19px; } .hstar-closing { padding:60px 0; } .lightbox-arrow { width:42px; height:52px; font-size:28px; } .lightbox-prev { left:5px; } .lightbox-next { right:5px; } .lightbox-caption { font-size:15px; margin:14px 6px 7px; } }
 @media (prefers-reduced-motion:reduce) { .event-photo-button img { transition:none !important; } .event-photo-button:hover img { transform:none; } }
 
 </style>
@@ -1937,14 +1941,13 @@ html { scroll-behavior: smooth; }
 <figure class="event-photo-tile event-photo-feature">
 <button type="button" class="event-photo-button hstar-photo-trigger" data-caption="Researchers and participants gathered for H-STAR 2026." aria-label="Enlarge workshop audience photograph">
 <img loading="lazy" decoding="async" width="1600" height="900" src="assets/images/hstar-2026/hstar-2026-workshop-audience.jpg" alt="Audience attending a research presentation at the H-STAR 2026 workshop in Kitakyushu, Japan." />
-<span class="event-photo-enlarge" aria-hidden="true">View photo ↗</span></button>
+<span class="event-photo-enlarge" aria-hidden="true">View photo</span></button>
 <figcaption>Researchers and participants gathered for H-STAR 2026.</figcaption></figure>
 <div class="event-photo-secondary">
-<figure class="event-photo-tile"><button type="button" class="event-photo-button hstar-photo-trigger" data-caption="Exploring multimodality and conversational foundations in human-robot interaction." aria-label="Enlarge keynote presentation photograph"><img loading="lazy" decoding="async" width="1600" height="900" src="assets/images/hstar-2026/hstar-2026-keynote-presentation.jpg" alt="Research presentation on conversational foundations and multimodality at H-STAR 2026." /><span class="event-photo-enlarge" aria-hidden="true">View photo ↗</span></button><figcaption>Exploring multimodality and conversational foundations in HRI.</figcaption></figure>
-<figure class="event-photo-tile"><button type="button" class="event-photo-button hstar-photo-trigger" data-caption="Research insights into social robots and human-centered applications." aria-label="Enlarge research presentation photograph"><img loading="lazy" decoding="async" width="1600" height="900" src="assets/images/hstar-2026/hstar-2026-research-presentation.jpg" alt="Speaker presenting research about social robots in hospitals at H-STAR 2026." /><span class="event-photo-enlarge" aria-hidden="true">View photo ↗</span></button><figcaption>Research insights into social robots and human-centered applications.</figcaption></figure>
-<figure class="event-photo-tile"><button type="button" class="event-photo-button hstar-photo-trigger" data-caption="Connecting researchers through meaningful discussions and collaboration." aria-label="Enlarge research discussion photograph"><img loading="lazy" decoding="async" width="1600" height="900" src="assets/images/hstar-2026/hstar-2026-research-discussion.jpg" alt="Workshop participants exchanging ideas during a research discussion at H-STAR 2026." /><span class="event-photo-enlarge" aria-hidden="true">View photo ↗</span></button><figcaption>Connecting researchers through meaningful discussions and collaboration.</figcaption></figure>
+<figure class="event-photo-tile"><button type="button" class="event-photo-button hstar-photo-trigger" data-caption="Exploring multimodality and conversational foundations in human-robot interaction." aria-label="Enlarge keynote presentation photograph"><img loading="lazy" decoding="async" width="1600" height="900" src="assets/images/hstar-2026/hstar-2026-keynote-presentation.jpg" alt="Research presentation on conversational foundations and multimodality at H-STAR 2026." /><span class="event-photo-enlarge" aria-hidden="true">View photo</span></button><figcaption>Exploring multimodality and conversational foundations in HRI.</figcaption></figure>
+<figure class="event-photo-tile"><button type="button" class="event-photo-button hstar-photo-trigger" data-caption="Research insights into social robots and human-centered applications." aria-label="Enlarge research presentation photograph"><img loading="lazy" decoding="async" width="1600" height="900" src="assets/images/hstar-2026/hstar-2026-research-presentation.jpg" alt="Speaker presenting research about social robots in hospitals at H-STAR 2026." /><span class="event-photo-enlarge" aria-hidden="true">View photo</span></button><figcaption>Research insights into social robots and human-centered applications.</figcaption></figure>
+<figure class="event-photo-tile"><button type="button" class="event-photo-button hstar-photo-trigger" data-caption="Connecting researchers through meaningful discussions and collaboration." aria-label="Enlarge research discussion photograph"><img loading="lazy" decoding="async" width="1600" height="900" src="assets/images/hstar-2026/hstar-2026-research-discussion.jpg" alt="Workshop participants exchanging ideas during a research discussion at H-STAR 2026." /><span class="event-photo-enlarge" aria-hidden="true">View photo</span></button><figcaption>Connecting researchers through meaningful discussions and collaboration.</figcaption></figure>
 </div></div>
-<p class="photo-source-note">Workshop photographs: <a href="https://www.linkedin.com/showcase/h-star-workshop/posts/" target="_blank" rel="noopener noreferrer">H-STAR Workshop on LinkedIn</a></p>
 </section>
 <!-- About -->
 <section aria-label="About the workshop" id="about">
@@ -1973,8 +1976,8 @@ html { scroll-behavior: smooth; }
 <section id="awards" aria-label="H-STAR 2026 Best Presentation Award" class="award-section">
 <div class="section-eyebrow">RECOGNIZING EXCELLENCE</div>
 <div class="award-panel">
-<figure class="award-photo"><button type="button" class="event-photo-button hstar-photo-trigger" data-caption="Celebrating research contributions and achievements at H-STAR 2026." aria-label="Enlarge H-STAR workshop group photograph"><img loading="lazy" decoding="async" width="1600" height="900" src="assets/images/hstar-2026/hstar-2026-group-photo-awards.jpg" alt="H-STAR 2026 group photograph shared with the official Best Presentation Award announcement." /><span class="event-photo-enlarge" aria-hidden="true">View photo ↗</span></button><figcaption>Celebrating research contributions and achievements at H-STAR 2026.</figcaption></figure>
-<div class="award-content"><h2>Best Presentation Award</h2><p>Celebrating outstanding research contributions and presentations at H-STAR 2026, held alongside IEEE RO-MAN 2026 in Kitakyushu, Japan.</p><p>Congratulations to the Best Presentation Award recipients, and thank you to everyone who contributed to the workshop's success.</p><a class="award-more" href="https://www.linkedin.com/showcase/h-star-workshop/posts/" target="_blank" rel="noopener noreferrer">See H-STAR workshop updates <span aria-hidden="true">↗</span></a></div>
+<figure class="award-photo"><button type="button" class="event-photo-button hstar-photo-trigger" data-caption="Celebrating research contributions and achievements at H-STAR 2026." aria-label="Enlarge H-STAR workshop group photograph"><img loading="lazy" decoding="async" width="1600" height="900" src="assets/images/hstar-2026/hstar-2026-group-photo-awards.jpg" alt="H-STAR 2026 group photograph shared with the official Best Presentation Award announcement." /><span class="event-photo-enlarge" aria-hidden="true">View photo</span></button><figcaption>Celebrating research contributions and achievements at H-STAR 2026.</figcaption></figure>
+<div class="award-content"><h2>Best Presentation Award</h2><p>Celebrating outstanding research contributions and presentations at H-STAR 2026, held alongside IEEE RO-MAN 2026 in Kitakyushu, Japan.</p><p>Congratulations to the Best Presentation Award recipients, and thank you to everyone who contributed to the workshop's success.</p></div>
 </div></section>
 <!-- Speakers --> <!-- Speakers -->
 <!-- Speakers -->
@@ -3107,35 +3110,47 @@ Professor, Waseda University</div>
 (function(){
   const dialog = document.getElementById('hstarPhotoLightbox');
   if (!dialog || typeof dialog.showModal !== 'function') return;
-  const triggers = Array.from(document.querySelectorAll('.hstar-photo-trigger'));
+  const highlights = Array.from(document.querySelectorAll('#highlights .hstar-photo-trigger'));
+  const awards = Array.from(document.querySelectorAll('#awards .hstar-photo-trigger'));
+  const triggers = [...highlights, ...awards];
   const image = dialog.querySelector('.lightbox-image');
   const caption = dialog.querySelector('.lightbox-caption');
+  const previousButton = dialog.querySelector('.lightbox-prev');
+  const nextButton = dialog.querySelector('.lightbox-next');
+  let activePhotos = [];
   let selected = 0;
   let previousFocus = null;
   function present(index) {
-    selected = (index + triggers.length) % triggers.length;
-    const trigger = triggers[selected];
+    if (!activePhotos.length) return;
+    selected = (index + activePhotos.length) % activePhotos.length;
+    const trigger = activePhotos[selected];
     const source = trigger.querySelector('img');
     image.src = source.getAttribute('src');
     image.alt = source.alt;
     caption.textContent = trigger.dataset.caption || '';
   }
-  triggers.forEach((trigger, index) => trigger.addEventListener('click', () => {
+  triggers.forEach(trigger => trigger.addEventListener('click', () => {
     previousFocus = document.activeElement;
-    present(index);
+    activePhotos = highlights.includes(trigger) ? highlights : awards;
+    const hasMultiplePhotos = activePhotos.length > 1;
+    previousButton.hidden = !hasMultiplePhotos;
+    nextButton.hidden = !hasMultiplePhotos;
+    present(activePhotos.indexOf(trigger));
     dialog.showModal();
     dialog.querySelector('.lightbox-close').focus();
   }));
   dialog.querySelector('.lightbox-close').addEventListener('click', () => dialog.close());
-  dialog.querySelector('.lightbox-prev').addEventListener('click', () => present(selected - 1));
-  dialog.querySelector('.lightbox-next').addEventListener('click', () => present(selected + 1));
+  previousButton.addEventListener('click', () => { if (activePhotos.length > 1) present(selected - 1); });
+  nextButton.addEventListener('click', () => { if (activePhotos.length > 1) present(selected + 1); });
   dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
   dialog.addEventListener('keydown', event => {
+    if (activePhotos.length <= 1) return;
     if (event.key === 'ArrowLeft') { event.preventDefault(); present(selected - 1); }
     if (event.key === 'ArrowRight') { event.preventDefault(); present(selected + 1); }
   });
   dialog.addEventListener('close', () => {
     image.removeAttribute('src');
+    activePhotos = [];
     if (previousFocus && typeof previousFocus.focus === 'function') previousFocus.focus();
   });
 })();
